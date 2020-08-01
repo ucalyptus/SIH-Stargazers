@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "applicationId": "com.labters.documentscanner",
+  "variantType": "LIBRARY",
+  "elements": [
+    {
+      "outputType": {
+        "type": "MERGED_MANIFESTS"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 6,
+        "versionName": "1.5.2",
+        "outputFile": "documentscanner-debug.aar",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "../../library_manifest/debug/AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.labters.documentscanner",
+        "split": ""
+      }
+    }
+  ]
+}

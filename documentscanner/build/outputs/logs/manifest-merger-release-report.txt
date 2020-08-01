@@ -1,0 +1,65 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:1-19:12
+	package
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:4:5-42
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:1-19:12
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:1-19:12
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:6:5-80
+	android:name
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:6:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:7:5-81
+	android:name
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:7:22-78
+application
+ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:9:5-17:19
+	android:label
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:11:9-41
+	tools:ignore
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:12:9-48
+	android:allowBackup
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:10:9-35
+activity#com.labters.documentscanner.ApplyFilters
+ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:13:9-59
+	android:name
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:13:19-47
+activity#com.labters.documentscanner.ImageCropActivity
+ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:14:9-16:72
+	android:theme
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:16:13-69
+	android:name
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml:15:13-46
+uses-sdk
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+		ADDED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\mk\StudioProjects\SnapLingo5\documentscanner\src\main\AndroidManifest.xml

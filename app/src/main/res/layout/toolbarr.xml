@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolb"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:elevation="5dp"
+    app:titleTextColor="#000"
+    android:background="#fff"
+    android:gravity="center_vertical"
+    android:animateLayoutChanges="true"
+    android:theme="@style/ThemeOverlay.AppCompat.Light"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:layout_scrollFlags="scroll|enterAlways"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+</androidx.appcompat.widget.Toolbar>
+
