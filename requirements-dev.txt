@@ -1,0 +1,4 @@
+isort
+requests
+black
+jupyter

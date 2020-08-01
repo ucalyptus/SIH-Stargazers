@@ -12,3 +12,32 @@
 /captures
 .externalNativeBuild
 .cxx
+
+# Build and Release Folders
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
+
+# Other files and folders
+.settings/
+
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
+
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
+
+*.bmp
+*.tgz
+*.log
+
+.vscode*
+__pycache__*
+.ipynb_checkpoints*
+venv*
+tflite-server.py.9ee34a77ce28e37526a6c75e05cab589.py
