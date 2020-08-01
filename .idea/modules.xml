@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NC_SVCE_MK200_Stargazers.iml" filepath="$PROJECT_DIR$/.idea/modules/NC_SVCE_MK200_Stargazers.iml" group="NC_SVCE_MK200_Stargazers" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="NC SVCE MK200 Stargazers/app" />
-    </modules>
-  </component>
-</project>
