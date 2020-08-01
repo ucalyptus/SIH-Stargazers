@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "NC SVCE MK200 Stargazers"
