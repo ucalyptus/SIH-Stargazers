@@ -60,7 +60,7 @@ import io.fotoapparat.selector.ResolutionSelectorsKt;
 import io.fotoapparat.view.CameraView;
 import io.fotoapparat.view.FocusView;
 
-import static com.applex.snaplingo.OcrResultActivity.resultUri;
+import static com.stargazers.ncsvcemk200stargazers.OcrResultActivity.resultUri;
 import static io.fotoapparat.log.LoggersKt.fileLogger;
 import static io.fotoapparat.log.LoggersKt.logcat;
 import static io.fotoapparat.log.LoggersKt.loggers;
@@ -693,7 +693,14 @@ public class CameraActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
 
-            Intent intent = new Intent(CameraActivity.this, ViewPager.class);
+            //NEEDS CORRECTION//
+            //NEEDS CORRECTION//
+            //NEEDS CORRECTION//
+            //NEEDS CORRECTION//
+            //NEEDS CORRECTION//
+            //NEEDS CORRECTION//
+
+            Intent intent = new Intent(CameraActivity.this, MainActivity.class);
             if (isFirst) {
                 intent.putExtra("from", "1");//first time from camera
             } else {

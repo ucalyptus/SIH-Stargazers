@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#fff"
+    tools:context=".AboutUs">
+
+    <include layout="@layout/toolbarr"
+        android:id="@+id/toolb"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:textColor="#212121"
+                android:fontFamily="@font/oxygen_bold"
+                android:text="Awaas app is a Made in India Android application developed by applex.in with the view of making Document Scanning &amp; Optical Character Recognition(OCR) accessible to every smart phone user."
+                android:textSize="15sp" />
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:paddingTop="10dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible"-->
+<!--                android:gravity="center">-->
+<!--                <ImageView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:contentDescription="Translate"-->
+<!--                    android:src="@drawable/ic_translate_black_24dp" />-->
+<!--                <ImageView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:contentDescription="Locate"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:src="@drawable/ic_location_on_black_24dp" />-->
+<!--                <ImageView-->
+<!--                    android:layout_width="70dp"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:contentDescription="Snap"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:src="@drawable/ic_camera_black_24dp" />-->
+<!--                <ImageView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:contentDescription="Search"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:src="@drawable/ic_search_black_24dp" />-->
+<!--                <ImageView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:paddingTop="5dp"-->
+<!--                    android:paddingBottom="5dp"-->
+<!--                    android:contentDescription="Text"-->
+<!--                    android:src="@drawable/ic_format_align_left_black_24dp" />-->
+<!--            </LinearLayout>-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="@string/app_name"
+                android:textColor="#015"
+                android:textSize="30sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="Version 1.1.8"
+                android:textColor="#015"
+                android:fontFamily="@font/oxygen_regular"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="25dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/oxygen_bold"
+                android:textColor="#212121"
+                android:text="Awaas app comes as a package solution comprising multiple features such as Document scanner, translator, locator, search, generate Password protected PDfs , scanning QR/Bar codes from camera and gallery &amp; generating QR codes. The user get several features to manipulate the derived information and then share." />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/ad_view">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="Made with ❤️ in India"
+            android:textColor="#212121"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
