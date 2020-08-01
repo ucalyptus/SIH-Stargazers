@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/NC_SVCE_MK200_Stargazers.iml" filepath="$PROJECT_DIR$/.idea/modules/NC_SVCE_MK200_Stargazers.iml" group="NC_SVCE_MK200_Stargazers" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="NC SVCE MK200 Stargazers/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/documentscanner/documentscanner.iml" filepath="$PROJECT_DIR$/.idea/modules/documentscanner/documentscanner.iml" group="NC SVCE MK200 Stargazers/documentscanner" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary/openCVLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary/openCVLibrary.iml" group="NC SVCE MK200 Stargazers/openCVLibrary" />
     </modules>
   </component>
 </project>

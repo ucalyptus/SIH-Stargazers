@@ -26,6 +26,16 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+configurations {
+    all {
+        exclude module: 'httpclient'
+    }
+}
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven { url "https://repository.aspose.com/repo/" }
+}
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -52,5 +62,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'id.zelory:compressor:2.1.0'
 
+    implementation project(path: ':documentscanner')
 
 }
