@@ -1,9 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="5dp"
+            android:padding="8dp"
+            android:background="@drawable/custom_ripple_white"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="55dp"
+            android:orientation="vertical">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:lottie_autoPlay="false"
+                app:lottie_fileName="house_roof_jump.json"
+                app:lottie_loop="false" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:gravity="center_horizontal|center_vertical"
+                android:paddingHorizontal="40dp"
+                android:paddingVertical="5dp"
+                android:text="OTP Verification"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:paddingVertical="5dp"
+                android:fontFamily="@font/oxygen_bold"
+                android:paddingHorizontal="40dp"
+                android:text="You will receive an One Time Password on this mobile number"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="40dp"
+                android:text="Enter Mobile Number"
+                android:fontFamily="@font/oxygen_bold"
+                android:layout_marginTop="40dp"
+                android:textSize="15sp"/>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center_vertical|center_horizontal">
+
+                <EditText
+                    android:id="@+id/code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="+91"
+                    android:background="@android:color/transparent"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/oxygen_ex_bold"
+                    android:paddingHorizontal="15dp"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="0dp"
+                    android:maxLength="10"
+                    android:inputType="number"
+                    android:background="@android:color/transparent"
+                    android:hint="Mobile No."
+                    android:digits="0123456789"
+                    android:fontFamily="@font/oxygen_ex_bold"
+                    android:padding="12dp"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="50dp"
+                android:background="#878787"/>
+
+            <Button
+                android:id="@+id/otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/colorTheme"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:text="SEND OTP"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

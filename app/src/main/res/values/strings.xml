@@ -11,4 +11,20 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <array name="inactive">
+        <item>@color/colorbase</item>
+        <item>@color/colorbase</item>
+        <item>@color/colorbase</item>
+        <item>@color/colorbase</item>
+    </array>
+
+    <array name="active">
+        <item>@color/colorAccent</item>
+        <item>@color/colorAccent</item>
+        <item>@color/colorAccent</item>
+        <item>@color/colorAccent</item>
+    </array>
+
+    <color name="colorbase">#cbcbcb</color>
 </resources>

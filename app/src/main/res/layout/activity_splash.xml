@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:fitsSystemWindows="true"
     android:background="#fff">
@@ -12,27 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/img"
+        <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:contentDescription="@string/app_name"
-            android:foregroundGravity="center"
-            android:src="@drawable/capture" />
+            android:layout_height="200dp"
+            android:padding="10dp"
+            app:lottie_fileName="6711-home.json"
+            app:lottie_loop="false"
+            app:lottie_autoPlay="true"
+            android:scaleType="fitCenter"/>
 
-<!--        <TextView-->
-<!--            android:id="@+id/textViewas"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/app_name"-->
-<!--            android:textColor="#000000"-->
-<!--            android:textSize="30sp"-->
-<!--            android:fontFamily="@font/oxygen_bold"-->
-<!--            android:gravity="center_horizontal" />-->
     </LinearLayout>
 
     <LinearLayout

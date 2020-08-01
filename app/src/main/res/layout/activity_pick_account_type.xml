@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".PickAccountTypeActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:lottie_autoPlay="false"
+                app:lottie_fileName="lf30_editor_Nq4kpY.json"
+                app:lottie_loop="false" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:gravity="center_horizontal|center_vertical"
+                android:paddingHorizontal="40dp"
+                android:paddingVertical="5dp"
+                android:text="Select Account Type"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:paddingVertical="5dp"
+                android:fontFamily="@font/oxygen_bold"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:text="If you are an Govt. Official/Inspector/Survey Officer"
+                android:textSize="15sp"/>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Officer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:layout_margin="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:tint="@color/colorTheme"
+                        android:src="@drawable/ic_outline_supervisor_account_24"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="#fff"
+                        android:paddingHorizontal="10dp"
+                        android:fontFamily="@font/oxygen_ex_bold"
+                        android:text="Govt. Official"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:paddingVertical="5dp"
+                android:fontFamily="@font/oxygen_bold"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:text="If you are a beneficiary willing to apply for a new House or track your existing application status"
+                android:textSize="15sp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Benificary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@color/colorAccent"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:tint="@color/colorTheme"
+                        android:src="@drawable/ic_outline_home_24" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:textSize="20sp"
+                        android:paddingHorizontal="10dp"
+                        android:fontFamily="@font/oxygen_ex_bold"
+                        android:text="Benificiary"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

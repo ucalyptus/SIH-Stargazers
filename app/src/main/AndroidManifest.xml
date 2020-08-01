@@ -18,16 +18,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".PickAccountTypeActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".LoginActivity" />
-
         <activity
             android:name=".Splash"
             android:screenOrientation="portrait"
@@ -38,7 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".CameraActivity"
             android:screenOrientation="portrait"

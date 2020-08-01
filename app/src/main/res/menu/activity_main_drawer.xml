@@ -19,18 +19,18 @@
 
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Account">
         <menu>
 
             <item
-                android:id="@+id/share"
-                android:title="Share with a friend"
+                android:id="@+id/language"
+                android:title="Change language"
                 android:icon="@drawable/ic_arrow_back_black_24dp" />
 
             <item
-                android:id="@+id/rate"
-                android:title="Rate us on Google Play"
-                android:icon="@drawable/ic_arrow_back_black_24dp" />
+                android:id="@+id/log_out"
+                android:title="Log Out"
+                android:icon="@drawable/ic_outline_exit_to_app_24" />
 
         </menu>
 

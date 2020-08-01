@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="-30dp"
+                android:src="@drawable/login2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Get your own home"
+                android:fontFamily="@font/oxygen_bold"
+                android:textSize="22sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-70dp"
+                android:padding="5dp"/>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center"
+                app:lottie_loop="true"
+                android:layout_marginStart="10dp"
+                app:lottie_autoPlay="true"
+                android:padding="10dp"
+                app:lottie_fileName="lf30_editor_Nq4kpY.json"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="Auto Detect texts in image \nSearch + Locate + Translate\nSave as PDF/ Doc\nSimple Text Editor\nMerge or Edit later!"
+                android:textColor="#403D37"
+                android:lineSpacingExtra="8dp"
+                android:fontFamily="@font/oxygen_bold"
+                android:layout_marginHorizontal="20dp"
+                android:padding="5dp"
+                android:textSize="16sp"/>
+            <ImageView
+                android:layout_width="210dp"
+                android:layout_height="210dp"
+                android:src="@drawable/login3"
+                android:scaleType="fitCenter"
+                android:layout_marginRight="-50dp"
+                android:layout_gravity="right"/>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

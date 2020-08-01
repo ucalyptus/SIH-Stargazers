@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="top">
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="top|left"
+                android:src="@drawable/login2"
+                android:layout_marginStart="-60dp"
+                android:layout_marginTop="-60dp"
+                app:layout_constraintEnd_toEndOf="parent" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Get your own home \nwith a few clciks"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:paddingHorizontal="20dp"
+                android:lineSpacingExtra="4dp"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginTop="-140dp"/>
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/game"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:padding="70dp"
+                android:scaleType="fitCenter"
+                app:lottie_fileName="lf30_editor_Nq4kpY.json"                app:lottie_loop="true"
+                app:lottie_autoPlay="true"/>
+<!--            <ImageView-->
+<!--                android:layout_width="250dp"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:layout_gravity="top|right"-->
+<!--                android:src="@drawable/"-->
+<!--                android:layout_marginRight="-80dp"-->
+<!--                android:layout_marginTop="-80dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent" />-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textColor="#403D37"
+                android:text="Keep a track of the progress of your house"
+                android:fontFamily="@font/oxygen_bold"
+                android:textSize="18sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"/>
+
+            <ImageView
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:src="@drawable/login3"
+                android:scaleType="fitCenter"
+                android:layout_marginRight="-40dp"
+                android:layout_gravity="right"/>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
