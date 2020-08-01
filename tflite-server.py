@@ -8,7 +8,8 @@ import numpy as np
 import tflite_runtime.interpreter as tflite
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from PIL import Image
-
+from PIL import ImageOps
+import tensorflow as tf
 from helpers import classify_image, read_labels, set_input_tensor
 
 app = FastAPI()
@@ -25,7 +26,8 @@ STAGE_URL = "/v1/vision/stage"
 # OBJ_LABELS = "models/object_detection/mobilenet_ssd_v2_coco/coco_labels.txt"
 SCENE_MODEL = "models/classification/house-stage/model.tflite"
 SCENE_LABELS = "models/classification/house-stage/labels.txt"
-
+SEGMENTATION_MODEL = "models/Segmentation/lite-model_deeplabv3-mobilenetv2-ade20k_1_default_1.tflite"
+SEGMENTATION_LABELS = "models/Segmentation/labels.txt"
 # Setup object detection
 # obj_interpreter = tflite.Interpreter(model_path=OBJ_MODEL)
 # obj_interpreter.allocate_tensors()
@@ -157,5 +159,51 @@ async def predict_stage(image: UploadFile = File(...)):
         data["success"] = True
         return data
     except:
+        e = sys.exc_info()[1]
+        raise HTTPException(status_code=500, detail=str(e))
+        
+
+@app.post(SEGMENTATION_URL)
+async def predict_segment(image: UploadFile = File(...)):
+    try:
+        contents = await image.read()
+        image = Image.open(io.BytesIO(contents))
+        
+        old_size = image.size  # old_size is in (width, height) format
+        desired_ratio = input_size[0] / input_size[1]
+        old_ratio = old_size[0] / old_size[1]
+        if old_ratio < desired_ratio: # '<': cropping, '>': padding
+        	new_size = (old_size[0], int(old_size[0] / desired_ratio))
+        else:
+        	new_size = (int(old_size[1] * desired_ratio), old_size[1])
+        # Cropping the original image to the desired aspect ratio
+        delta_w = new_size[0] - old_size[0]
+        delta_h = new_size[1] - old_size[1]
+        padding = (delta_w//2, delta_h//2, delta_w-(delta_w//2), delta_h-(delta_h//2))
+        cropped_image = ImageOps.expand(image, padding)
+        resized_image = cropped_image.convert('RGB').resize(input_size, Image.BILINEAR)
+        # Convert to a NumPy array, add a batch dimension, and normalize the image.
+        image_for_prediction = np.asarray(resized_image).astype(np.float32)
+        image_for_prediction = np.expand_dims(image_for_prediction, 0)
+        image_for_prediction = image_for_prediction / 127.5 - 1
+        # Load the model.
+        interpreter = tf.lite.Interpreter(model_path=SEGMENTATION_MODEL)
+        # Invoke the interpreter to run inference.
+        interpreter.allocate_tensors()
+        interpreter.set_tensor(input_details[0]['index'], image_for_prediction)
+        interpreter.invoke()
+        # Retrieve the raw output map.
+        raw_prediction = interpreter.tensor(interpreter.get_output_details()[0]['index'])()
+        #print(raw_prediction[0])
+        width, height = cropped_image.size
+        seg_map = tf.argmax(tf.image.resize(raw_prediction, (height, width)), axis=3)
+        seg_map = tf.squeeze(seg_map).numpy().astype(np.int8)
+        
+        #return seg_map"""
+        preds = {"seg_map":seg_map}
+        #print(dic)
+        return preds
+    except:
+    
         e = sys.exc_info()[1]
         raise HTTPException(status_code=500, detail=str(e))
