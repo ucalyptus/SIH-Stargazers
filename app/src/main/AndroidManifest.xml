@@ -21,9 +21,11 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".NewBeneficiary2"/>
+        <activity android:name=".NewBeneficiary2"
+            android:launchMode="singleTop"/>
 
-        <activity android:name=".NewBeneficiary1" />
+        <activity android:name=".NewBeneficiary1"
+            android:launchMode="singleTop"/>
 
         <activity
             android:name=".Splash"

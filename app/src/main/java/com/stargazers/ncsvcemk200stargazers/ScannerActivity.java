@@ -25,12 +25,12 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
         code = result.getText();
         Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
-        super.onBackPressed();
+//        ScannerActivity.super.onBackPressed();
 
-//        Intent intent = new Intent(ScannerActivity.this, NewBeneficiary1.class);
-//        intent.putExtra("result", code);
-//        startActivity(intent);
-//        finish();
+        Intent intent = new Intent(ScannerActivity.this, NewBeneficiary1.class);
+        intent.putExtra("result", code);
+        startActivity(intent);
+        finish();
 
     }
 

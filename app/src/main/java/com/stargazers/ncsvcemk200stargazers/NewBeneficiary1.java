@@ -74,25 +74,39 @@ public class NewBeneficiary1 extends AppCompatActivity {
 
         if(getIntent().getStringExtra("result") != null) {
             String result = getIntent().getStringExtra("result");
-            aadhaarForm = new AadhaarForm(result);
-            JValues = aadhaarForm.getJValues();
+            if(result.contains("xml version")){
+                aadhaarForm = new AadhaarForm(result);
+                JValues = aadhaarForm.getJValues();
 
-            aadhaarModel = new AadhaarModel();
-            aadhaarModel.setUid(JValues.get("Aadhaar No"));
-            aadhaarModel.setName(JValues.get("Name"));
-            aadhaarModel.setGender(JValues.get("Gender"));
-            aadhaarModel.setDob(JValues.get("DOB"));
-            aadhaarModel.setCareof(JValues.get("Care Of"));
-            aadhaarModel.setBuildingNo(JValues.get("Building No"));
-            aadhaarModel.setStreet(JValues.get("Street"));
-            aadhaarModel.setVtc(JValues.get("VTC"));
-            aadhaarModel.setPo(JValues.get("Post Office"));
-            aadhaarModel.setDistrict(JValues.get("District"));
-            aadhaarModel.setSubDistrict(JValues.get("Sub District"));
-            aadhaarModel.setState(JValues.get("State"));
-            aadhaarModel.setPin(JValues.get("Pincode"));
+                aadhaarModel = new AadhaarModel();
+                aadhaarModel.setUid(JValues.get("Aadhaar No"));
+                aadhaarModel.setName(JValues.get("Name"));
+                aadhaarModel.setGender(JValues.get("Gender"));
+                aadhaarModel.setDob(JValues.get("DOB"));
+                aadhaarModel.setCareof(JValues.get("Care Of"));
+                aadhaarModel.setBuildingNo(JValues.get("Building No"));
+                aadhaarModel.setStreet(JValues.get("Street"));
+                aadhaarModel.setVtc(JValues.get("VTC"));
+                aadhaarModel.setPo(JValues.get("Post Office"));
+                aadhaarModel.setDistrict(JValues.get("District"));
+                aadhaarModel.setSubDistrict(JValues.get("Sub District"));
+                aadhaarModel.setState(JValues.get("State"));
+                aadhaarModel.setPin(JValues.get("Pincode"));
 
-            qrResult.setText(aadhaarModel.toString());
+                qrResult.setText(aadhaarModel.toString());
+
+                proceed.setClickable(true);
+                proceed.setBackgroundTintList(NewBeneficiary1.this.getResources().getColorStateList(R.color.colorProceed));
+                proceed.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }
+            else {
+                Toast.makeText(NewBeneficiary1.this, "Please scan the QR code on your Aadhaar card.", Toast.LENGTH_LONG).show();
+            }
         }
 
 
@@ -168,45 +182,46 @@ public class NewBeneficiary1 extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(ScannerActivity.code!=null) {
-            String result = ScannerActivity.code;
-            if(result.contains("xml version")){
-                aadhaarForm = new AadhaarForm(result);
-                JValues = aadhaarForm.getJValues();
-
-                aadhaarModel = new AadhaarModel();
-                aadhaarModel.setUid(JValues.get("Aadhaar No"));
-                aadhaarModel.setName(JValues.get("Name"));
-                aadhaarModel.setGender(JValues.get("Gender"));
-                aadhaarModel.setDob(JValues.get("DOB"));
-                aadhaarModel.setCareof(JValues.get("Care Of"));
-                aadhaarModel.setBuildingNo(JValues.get("Building No"));
-                aadhaarModel.setStreet(JValues.get("Street"));
-                aadhaarModel.setVtc(JValues.get("VTC"));
-                aadhaarModel.setPo(JValues.get("Post Office"));
-                aadhaarModel.setDistrict(JValues.get("District"));
-                aadhaarModel.setSubDistrict(JValues.get("Sub District"));
-                aadhaarModel.setState(JValues.get("State"));
-                aadhaarModel.setPin(JValues.get("Pincode"));
-
-                qrResult.setText(aadhaarModel.toString());
-
-                proceed.setClickable(true);
-                proceed.setBackgroundTintList(NewBeneficiary1.this.getResources().getColorStateList(R.color.colorProceed));
-                proceed.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
-            }
-            else {
-                Toast.makeText(NewBeneficiary1.this, "Please scan the QR code on your Aadhaar card.", Toast.LENGTH_LONG).show();
-            }
-
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if(ScannerActivity.code!=null) {
+//            String result = ScannerActivity.code;
+//            if(result.contains("xml version")){
+//                aadhaarForm = new AadhaarForm(result);
+//                JValues = aadhaarForm.getJValues();
+//
+//                aadhaarModel = new AadhaarModel();
+//                aadhaarModel.setUid(JValues.get("Aadhaar No"));
+//                aadhaarModel.setName(JValues.get("Name"));
+//                aadhaarModel.setGender(JValues.get("Gender"));
+//                aadhaarModel.setDob(JValues.get("DOB"));
+//                aadhaarModel.setCareof(JValues.get("Care Of"));
+//                aadhaarModel.setBuildingNo(JValues.get("Building No"));
+//                aadhaarModel.setStreet(JValues.get("Street"));
+//                aadhaarModel.setVtc(JValues.get("VTC"));
+//                aadhaarModel.setPo(JValues.get("Post Office"));
+//                aadhaarModel.setDistrict(JValues.get("District"));
+//                aadhaarModel.setSubDistrict(JValues.get("Sub District"));
+//                aadhaarModel.setState(JValues.get("State"));
+//                aadhaarModel.setPin(JValues.get("Pincode"));
+//
+//                qrResult.setText(aadhaarModel.toString());
+//
+//                proceed.setClickable(true);
+//                proceed.setBackgroundTintList(NewBeneficiary1.this.getResources().getColorStateList(R.color.colorProceed));
+//                proceed.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                    }
+//                });
+//            }
+//            else {
+//                Toast.makeText(NewBeneficiary1.this, "Please scan the QR code on your Aadhaar card.", Toast.LENGTH_LONG).show();
+//            }
+//            ScannerActivity.code = null;
+//
+//        }
+//    }
 }
