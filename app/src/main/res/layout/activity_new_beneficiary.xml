@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    tools:context=".NewBeneficiary1">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="20dp">
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="1"
+                android:gravity="center"
+                android:textColor="@color/colorTheme"
+                android:textSize="25dp"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:background="@drawable/page_count_bg"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scan Aadhaar Card"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:textColor="#212121"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="20dp"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Click on 'Scan Aadhaar' button and keep your aadhar card in front of the camera"
+            android:paddingHorizontal="20dp"
+            android:textColor="#212121"/>
+
+    </LinearLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/title"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fill up beneficiary details"
+                android:fontFamily="@font/oxygen_bold"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                android:paddingHorizontal="20dp"
+                android:visibility="gone"
+                android:paddingVertical="10dp" />
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                android:layout_marginHorizontal="15dp"-->
+<!--                android:layout_marginVertical="10dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="10dp">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Name as in Bank Records :"-->
+<!--                        android:textColor="#212121" />-->
+<!--                    <EditText-->
+<!--                        android:id="@+id/bankName"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:textColor="#212121" />-->
+
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Bank Account Number :"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:textColor="#212121" />-->
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/acctNo"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:textColor="#212121" />-->
+
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="IFSC number:"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:textColor="#212121" />-->
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/IFSC"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:textColor="#212121" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Aadhaar QR Details"
+                        android:fontFamily="@font/oxygen_bold"
+                        android:textSize="18sp"
+                        android:textColor="#212121"/>
+
+                    <TextView
+                        android:id="@+id/aadhaarQR"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="Scan the QR code on your Aadhaar card"
+                        android:minLines="6"
+                        android:textColor="#212121" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+<!--            <Button-->
+<!--                android:id="@+id/proceed"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/custom_button"-->
+<!--                android:backgroundTint="#64DD17"-->
+<!--                android:textColor="#444"-->
+<!--                android:paddingHorizontal="30dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:drawablePadding="5dp"-->
+<!--                android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"-->
+<!--                android:text="Proceed"/>-->
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/scanQR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan Aadhaar"
+        android:background="@drawable/custom_button"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorTheme"/>
+
+</RelativeLayout>

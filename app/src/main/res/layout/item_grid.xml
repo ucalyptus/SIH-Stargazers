@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="15dp"
+    app:cardCornerRadius="2dp"
+    android:layout_marginHorizontal="10dp"
+    android:id="@+id/grid_page">
+
+    <ImageView
+        android:id="@+id/grid_image"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_height="250dp"/>
+
+    <ImageButton
+        android:id="@+id/delete_image"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/custom_ripple_grey_bg"
+        android:padding="8dp"
+        android:layout_gravity="end|top"
+        android:src="@drawable/ic_close_black_24dp" />
+    
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:text="3"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:background="@drawable/page_count_bg"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="10dp"
+        />
+
+</androidx.cardview.widget.CardView>

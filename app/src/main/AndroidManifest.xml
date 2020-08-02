@@ -17,7 +17,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".NewBeneficiary2"/>
+
+        <activity android:name=".NewBeneficiary1" />
 
         <activity
             android:name=".Splash"
@@ -29,20 +35,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Walkthrough"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".PickAccountTypeActivity"/>
-
+        <activity android:name=".PickAccountTypeActivity" />
         <activity android:name=".LoginActivity" />
-
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CameraActivity"
             android:screenOrientation="portrait"
@@ -53,7 +54,6 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".OcrResultActivity"
             android:screenOrientation="portrait">
@@ -67,11 +67,10 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".WebView"
             android:screenOrientation="portrait" />
-
+        <activity android:name=".ScannerActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
@@ -89,7 +88,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

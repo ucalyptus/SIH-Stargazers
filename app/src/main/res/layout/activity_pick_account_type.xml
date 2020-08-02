@@ -121,7 +121,7 @@
                         android:textSize="20sp"
                         android:paddingHorizontal="10dp"
                         android:fontFamily="@font/oxygen_ex_bold"
-                        android:text="Benificiary"/>
+                        android:text="Beneficiary"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

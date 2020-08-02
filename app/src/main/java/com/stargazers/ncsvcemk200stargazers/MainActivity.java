@@ -1,32 +1,32 @@
 package com.stargazers.ncsvcemk200stargazers;
 
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
-import android.view.Menu;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private AppBarConfiguration mAppBarConfiguration;
     DrawerLayout drawer;
+    private CardView newRecord, existingRecord;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +46,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Awaas App");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        newRecord = findViewById(R.id.newRecord);
+        existingRecord = findViewById(R.id.existing);
+
+        IntroPref introPref = new IntroPref(this);
+
+        PushDownAnim.setPushDownAnimTo(newRecord)
+                .setScale(PushDownAnim.MODE_STATIC_DP, 6)
+                .setOnClickListener(v -> {
+                    Intent intent = new Intent(MainActivity.this, NewBeneficiary1.class);
+                    startActivity(intent);
+                });
+
+//        PushDownAnim.setPushDownAnimTo(existingRecord)
+////                .setScale(PushDownAnim.MODE_STATIC_DP, 6)
+////                .setOnClickListener(v -> {
+//////                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//////                    startActivity(intent);
+////                });
 
 
     }
@@ -105,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 FirebaseAuth.getInstance().signOut();
-                                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                                Intent intent = new Intent(MainActivity.this, PickAccountTypeActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

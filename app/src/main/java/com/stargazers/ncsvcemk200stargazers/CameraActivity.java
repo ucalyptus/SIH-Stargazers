@@ -59,6 +59,7 @@ import io.fotoapparat.selector.JpegQualitySelectorsKt;
 import io.fotoapparat.selector.ResolutionSelectorsKt;
 import io.fotoapparat.view.CameraView;
 import io.fotoapparat.view.FocusView;
+import kotlin.Unit;
 
 import static com.stargazers.ncsvcemk200stargazers.OcrResultActivity.resultUri;
 import static io.fotoapparat.log.LoggersKt.fileLogger;
@@ -137,26 +138,25 @@ public class CameraActivity extends AppCompatActivity {
         capture = findViewById(R.id.capture);
         torchSwitch = findViewById(R.id.torchSwitch);
         switchCameraButton = findViewById(R.id.switchCamera);
-        preview = findViewById(R.id.preview);
         done = findViewById(R.id.done);
 //        count = findViewById(R.id.count);
 
         cameraView.setVisibility(View.VISIBLE);
 
         //for new doc
-        if(getIntent().getStringExtra("boolcam") != null && getIntent().getStringExtra("boolcam").matches("1")){
-            docName = String.valueOf(System.currentTimeMillis());
-            isFirst = true;
-        }
-        //from existing doc
-        else if(getIntent().getStringExtra("boolcam") != null && getIntent().getStringExtra("boolcam").matches("2")) {
-            docName = getIntent().getStringExtra("prevDocName");
-            isFirst = false;
-        }
-        else {
-            isFirst = false;
-            docName = getIntent().getStringExtra("prevDocName");
-        }
+//        if(getIntent().getStringExtra("boolcam") != null && getIntent().getStringExtra("boolcam").matches("1")){
+//            docName = String.valueOf(System.currentTimeMillis());
+//            isFirst = true;
+//        }
+//        //from existing doc
+//        else if(getIntent().getStringExtra("boolcam") != null && getIntent().getStringExtra("boolcam").matches("2")) {
+//            docName = getIntent().getStringExtra("prevDocName");
+//            isFirst = false;
+//        }
+//        else {
+//            isFirst = false;
+//            docName = getIntent().getStringExtra("prevDocName");
+//        }
 
         fotoapparat = createFotoapparat();
         fotoapparat.updateConfiguration(cameraConfiguration);
@@ -268,7 +268,7 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(flashState[0] == 2){//on
+                if(flashState[0] == 2) {//on
 //                    Animation rotate = AnimationUtils.loadAnimation(CameraActivity.this, R.anim.rotate_flash360);
 //                    torchSwitch.startAnimation(rotate);
                     torchSwitch.setImageResource(R.drawable.ic_flash_off_black_24dp);
@@ -325,52 +325,12 @@ public class CameraActivity extends AppCompatActivity {
 
     private void takePicture() {
         PhotoResult photoResult = fotoapparat.takePicture();
-//        photoResult.saveToFile(new File(Environment.getExternalStorageDirectory()+"/SnapLingo/.documents", docName))
+//        photoResult.saveToFile(new File(Environment.getExternalStorageDirectory()+"/Awaas/.documents", "temp.jpg"))
 //                .whenDone(new WhenDoneListener<Unit>() {
 //                    @Override
 //                    public void whenDone(@org.jetbrains.annotations.Nullable Unit unit) {
-//                        if(getIntent().getStringExtra("boolcam") != null) {
-//
-//                            File f =  new File(Environment.getExternalStorageDirectory()+"/SnapLingo/.documents", docName);
-//                            f.mkdirs();
-//                            if(f.exists()){
-//                                f.mkdir();
-//                            }
-//
-//                            Bitmap bitmap = bitmapPhoto.bitmap;
-//
-//                            //fix orientation
-//                            int orientation = CameraActivity.this.getResources().getConfiguration().orientation;
-//                            if(orientation == Configuration.ORIENTATION_PORTRAIT) {
-//                                Matrix matrix = new Matrix();
-//                                matrix.postRotate(90);
-//                                bitmap = Bitmap.createBitmap(bitmap, 0 ,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true ) ;
-//                            }
-//                            //fix orientation
-//
-//                            //Save to file
-//                            File imageFile = new File(Environment.getExternalStorageDirectory() + "/SnapLingo/.documents/"+docName+"/", imageName);
-//                            try (FileOutputStream out = new FileOutputStream(imageFile)){
-//                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//                            //Save to file
-//
-//                            Intent intent = new Intent(CameraActivity.this, ViewPager.class);
-//                            if(isFirst){
-//                                intent.putExtra("from", "1");//first time from camera
-//                            }
-//                            else {
-//                                intent.putExtra("from", "3");//new Image addition from camera
-//                                String pos = getIntent().getStringExtra("imageCount");
-//                                intent.putExtra("pos", pos);
-//                            }
-//                            intent.putExtra("docName", docName);
-//                            startActivity(intent);
-//                            finish();
-//                        }
-//
+////                        ScannerConstants.selectedImageBitmap = bitmap;
+//                        CameraActivity.super.onBackPressed();
 //                    }
 //                });
         photoResult.toBitmap(scaled(0.3f))
@@ -382,12 +342,10 @@ public class CameraActivity extends AppCompatActivity {
                             Log.e(LOGGING_TAG, "Couldn't capture photo.");
                             return;
                         }
-                        if(getIntent().getStringExtra("boolcam") != null) {
-
-
-                            File f =  new File(Environment.getExternalStorageDirectory()+"/SnapLingo/.documents", docName);
+                        if(getIntent().getStringExtra("type") != null) {
+                            File f =  new File(Environment.getExternalStorageDirectory()+"/Awaas/", ".documents");
                             f.mkdirs();
-                            if(f.exists()){
+                            if(!f.exists()){
                                 f.mkdir();
                             }
 
@@ -401,11 +359,18 @@ public class CameraActivity extends AppCompatActivity {
                                 bitmap = Bitmap.createBitmap(bitmap, 0 ,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true ) ;
                             }
                             //fix orientation
+                            File imageFile = new File(Environment.getExternalStorageDirectory() + "/Awaas/", "temp.jpg");
+
+                            try (FileOutputStream out = new FileOutputStream(imageFile)){
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                            } catch (IOException e) {
+//                                Toast.makeText(CameraActivity.this, "here", Toast.LENGTH_LONG).show();
+                                e.printStackTrace();
+                            }
 
                             ScannerConstants.selectedImageBitmap = bitmap;
-                            Intent intent = new Intent(CameraActivity.this, ImageCropActivity.class);
-                            intent.putExtra("From", "Camera");
-                            startActivity(intent);
+                            CameraActivity.super.onBackPressed();
+
                         }
 
                         //OCR//
@@ -440,87 +405,7 @@ public class CameraActivity extends AppCompatActivity {
 
                     }
                 });
-//        photoResult.toBitmap(scaled(0.30f))
-//                .whenDone(new WhenDoneListener<BitmapPhoto>() {
-//                    @Override
-//                    public void whenDone(@Nullable BitmapPhoto bitmapPhoto) {
-//                        if (bitmapPhoto == null) {
-//                            Log.e(LOGGING_TAG, "Couldn't capture photo.");
-//                            return;
-//                        }
-////                        bitmapPhoto = -bitmapPhoto.rotationDegrees;
-//                        //////////Convert Bitmap to Uri////////////
-////                        BitmapDrawable bitmapDrawable = (BitmapDrawable)imageView.getDrawable();
-//                        Bitmap bitmap = bitmapPhoto.bitmap;
-////                        preview.setImageBitmap(bitmap);
-//
-//                        int orientation = CameraActivity.this.getResources().getConfiguration().orientation;
-//                        if(orientation == Configuration.ORIENTATION_PORTRAIT) {
-//                            Matrix matrix = new Matrix();
-//                            matrix.postRotate(90);
-//                            bitmap = Bitmap.createBitmap(bitmap, 0 ,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true ) ;
-//                        }
-//
-//                        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//                        bitmap.compress(Bitmap.CompressFormat.JPEG,100,bytes);
-//                        String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(),bitmap,String.valueOf(System.currentTimeMillis()),null);
-//                        //////////Convert Bitmap to Uri////////////
-//
-//                        if(getIntent().getStringExtra("boolcam") != null && getIntent().getStringExtra("boolcam").matches("1")) {
-////                            mImagesUri.clear();
-////                            mImagesUri.add(path);
-//                            Intent intent = new Intent(CameraActivity.this, ViewPager.class);
-//                            intent.putExtra("docName", docName);
-//                            intent.putExtra("fromCamera", "true");
-////                                intent.putExtra("firstTime", getIntent().getStringExtra("firstTime"));
-////                                intent.putStringArrayListExtra("ImageList", mImagesUri);
-//                            startActivity(intent);
-//                            finish();
-//
-////                            if (mImagesUri.size() > 0) {
-////                                Intent intent = new Intent(CameraActivity.this, ViewPager.class);
-////                                intent.putExtra("docName", docName);
-////                                intent.putExtra("fromCamera", "true");
-//////                                intent.putExtra("firstTime", getIntent().getStringExtra("firstTime"));
-//////                                intent.putStringArrayListExtra("ImageList", mImagesUri);
-////                                startActivity(intent);
-////                                finish();
-////                            }
-//                        }
-//                        else if(getIntent().getStringExtra("boolcam") != null && getIntent().getStringExtra("boolcam").matches("2")) {
-//                            mImagesUri.clear();
-//                            mImagesUri.addAll(Objects.requireNonNull(getIntent().getStringArrayListExtra("orgImgList")));
-//                            int size = mImagesUri.size();
-//                            mImagesUri.add(path);
-//                            if (mImagesUri.size() > 0) {
-//                                Intent intent = new Intent(CameraActivity.this, ViewPager.class);
-//                                intent.putExtra("fromCamera", "True");
-//                                intent.putExtra("bool", "2");
-//                                intent.putExtra("pos", String.valueOf(size));
-//                                intent.putExtra("prevDocName", getIntent().getStringExtra("prevDocName"));
-//                                intent.putExtra("docBool", getIntent().getStringExtra("docBool"));
-//                                intent.putStringArrayListExtra("ImageList", mImagesUri);
-//                                intent.putIntegerArrayListExtra("imgBool", getIntent().getIntegerArrayListExtra("imgBool"));
-//                                startActivity(intent);
-//                                finish();
-//                            }
-//                        }
-//                        else {
-//                            image_uri = Uri.parse(path);
-//
-//                            CropImage.activity(image_uri)
-//                                    .setActivityTitle("SnapCrop")
-//                                    .setAllowRotation(TRUE)
-//                                    .setAllowCounterRotation(TRUE)
-//                                    .setAllowFlipping(TRUE)
-//                                    .setAutoZoomEnabled(TRUE)
-//                                    .setMultiTouchEnabled(FALSE)
-//                                    .setGuidelines(CropImageView.Guidelines.ON)
-//                                    .start(CameraActivity.this);
-//                        }
-//
-//                    }
-//                });
+
     }
     /////////Camera & GALLERY////////////////
 

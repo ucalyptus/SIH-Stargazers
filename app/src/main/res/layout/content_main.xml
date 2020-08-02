@@ -14,11 +14,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:padding="10dp"
                 android:scaleType="fitCenter"
                 app:lottie_autoPlay="false"
@@ -32,24 +33,24 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:paddingHorizontal="40dp"
                 android:paddingVertical="5dp"
-                android:text="Select Account Type"
+                android:text="Select Beneficiary category"
                 android:textColor="@color/colorAccent"
                 android:textSize="22sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal|center_vertical"
+                android:gravity="center_vertical"
                 android:paddingVertical="5dp"
                 android:fontFamily="@font/oxygen_bold"
-                android:paddingHorizontal="20dp"
+                android:paddingHorizontal="25dp"
                 android:layout_marginTop="15dp"
-                android:text="If you are an Govt. Official/Inspector/Survey Officer"
+                android:text="For Beneficiaries applying for the first time"
                 android:textSize="15sp"/>
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/Officer"
+                android:id="@+id/newRecord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
@@ -84,16 +85,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal|center_vertical"
+                android:gravity="center_vertical"
                 android:paddingVertical="5dp"
                 android:fontFamily="@font/oxygen_bold"
-                android:paddingHorizontal="20dp"
+                android:paddingHorizontal="25dp"
                 android:layout_marginTop="15dp"
-                android:text="If you are a beneficiary willing to apply for a new House or track your existing application status"
+                android:text="Update status / details of existing beneficiaries"
                 android:textSize="15sp"/>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/Benificary"
+                android:id="@+id/existing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
@@ -121,7 +122,7 @@
                         android:textSize="20sp"
                         android:paddingHorizontal="10dp"
                         android:fontFamily="@font/oxygen_ex_bold"
-                        android:text="Add to Existing record"/>
+                        android:text="Update Existing record"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

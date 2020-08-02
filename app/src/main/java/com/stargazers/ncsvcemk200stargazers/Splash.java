@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,33 +46,41 @@ public class Splash extends AppCompatActivity {
         }
         else {
             if(FirebaseAuth.getInstance().getCurrentUser() != null){
-                new Handler().postDelayed(() -> {
-                    FirebaseFirestore.getInstance().document("Users/"+FirebaseAuth.getInstance().getUid())
-                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if(task.isSuccessful()){
-                                UserModel userModel = new UserModel();
-                                userModel = task.getResult().toObject(UserModel.class);
-                                if(userModel.getAccountType() == 1){
+                FirebaseFirestore.getInstance().document("User/"+FirebaseAuth.getInstance().getUid()+"/")
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            UserModel userModel;
+                            userModel = task.getResult().toObject(UserModel.class);
+                            if(userModel.getAccountType() == 1){//benificiary
+                                Toast.makeText(Splash.this, "here", Toast.LENGTH_SHORT).show();
+                                new Handler().postDelayed(() -> {
                                     introPref.setAccountType(1);
                                     Intent homeIntent = new Intent(Splash.this, MainActivity.class);
                                     startActivity(homeIntent);
                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                     finish();
-                                }
-                                else {
-                                    introPref.setAccountType(0);
-                                }
+                                }, Splash_time_out);
                             }
-                            else {
-
+                            else {//officer
+                                introPref.setAccountType(0);
+                                new Handler().postDelayed(() -> {
+                                    introPref.setAccountType(1);
+                                    Intent homeIntent = new Intent(Splash.this, MainActivity.class);
+                                    startActivity(homeIntent);
+                                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    finish();
+                                }, Splash_time_out);
                             }
+                        }
+                        else {
 
                         }
-                    });
 
-                }, Splash_time_out);
+                    }
+                });
+
             }
             else {
                 new Handler().postDelayed(() -> {

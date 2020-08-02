@@ -120,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                 mCallBack
         );
     }
+
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
             mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -133,6 +134,11 @@ public class LoginActivity extends AppCompatActivity {
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
             if (code != null){
+                EditText et = myDialogue.findViewById(R.id.otp_dialog);
+                et.setText(code);
+//                if(et.getText().toString().length()==6){
+//                    verifyCode(et.getText().toString());
+//                }
 //                progressBar.setVisibility(View.VISIBLE);
                 verifyCode(code);
             }

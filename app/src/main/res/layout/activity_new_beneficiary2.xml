@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewBeneficiary2">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="20dp">
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="2"
+                android:gravity="center"
+                android:textColor="@color/colorTheme"
+                android:textSize="25dp"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:background="@drawable/page_count_bg"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aadhaar Picture"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:textColor="#212121"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="20dp"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Take a picture of your aadhaar card"
+            android:paddingHorizontal="20dp"
+            android:textColor="#212121"/>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_below="@+id/title"
+        android:layout_alignBottom="@+id/take_aadhaar_image"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="60dp">
+
+        <ImageView
+            android:id="@+id/aadhaar_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Scan the QR code on your Aadhaar card"
+            android:textColor="#212121"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/take_aadhaar_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Take Picture of Aadhaar"
+        android:background="@drawable/custom_button"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorTheme"/>
+
+</RelativeLayout>
