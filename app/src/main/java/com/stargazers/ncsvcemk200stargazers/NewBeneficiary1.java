@@ -62,11 +62,9 @@ public class NewBeneficiary1 extends AppCompatActivity {
 //        acctNo = findViewById(R.id.acctNo);
 //        bankName = findViewById(R.id.bankName);
 //        IFSC = findViewById(R.id.IFSC);
-//
-        qrResult = findViewById(R.id.aadhaarQR);
 //        acctNo = findViewById(R.id.acctNo);
 
-//        document = findViewById(R.id.aadhaar_image);
+        qrResult = findViewById(R.id.aadhaarQR);
 
         scanQR = findViewById(R.id.scanQR);
         takePic = findViewById(R.id.take_aadhaar_image);
@@ -100,13 +98,18 @@ public class NewBeneficiary1 extends AppCompatActivity {
                 proceed.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(NewBeneficiary1.this, MainActivity.class));
+                        startActivity(new Intent(NewBeneficiary1.this, NewBeneficiary2.class));
+//                        overridePendingTransition();
                     }
                 });
             }
             else {
                 Toast.makeText(NewBeneficiary1.this, "Please scan the QR code on your Aadhaar card.", Toast.LENGTH_LONG).show();
             }
+        }
+        else {
+            proceed.setClickable(false);
+
         }
 
 
@@ -124,7 +127,6 @@ public class NewBeneficiary1 extends AppCompatActivity {
             }
         });
 
-        proceed.setClickable(false);
 
 
     }
