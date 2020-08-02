@@ -215,7 +215,7 @@ async def predict_segment(image: UploadFile = File(...)):
         print(seg_n.shape)
         '''
         seg_map = np.argmax(raw_prediction,axis=3)
-        print(seg_map)
+        #print(seg_map)
         seg_map = np.squeeze(seg_map).astype(np.int8)
         #print(seg_map)
         seg_map=np.where((seg_map<0),0,seg_map)
