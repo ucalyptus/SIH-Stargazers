@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:layout_gravity="center"
-                    android:text="Get every information regarding your future home from Awaas app"
+                    android:text="Apply for your new home in just \n3 SIMPLE STEPS"
                     android:textColor="#403D37"
                     android:lineSpacingExtra="8dp"
                     android:fontFamily="@font/oxygen_bold"
