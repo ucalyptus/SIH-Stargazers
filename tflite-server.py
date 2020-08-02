@@ -104,7 +104,7 @@ async def predict_segment(image: UploadFile = File(...)):
         interpreter.invoke()
         # Retrieve the raw output map.
         raw_prediction = interpreter.tensor(interpreter.get_output_details()[0]['index'])()
-        
+        #print(raw_prediction[0])
         ''''
         width, height = cropped_image.size
         print(raw_prediction.shape)
@@ -114,15 +114,17 @@ async def predict_segment(image: UploadFile = File(...)):
         print(seg_n.shape)
         '''
         seg_map = np.argmax(raw_prediction,axis=3)
-        #print(seg_map)
+        print(seg_map)
         seg_map = np.squeeze(seg_map).astype(np.int8)
         #print(seg_map)
         seg_map=np.where((seg_map<0),0,seg_map)
         seg_map_list = seg_map.tolist()
-        preds = {}
-        preds["seg_map"] = seg_map_list
-        return preds
         
+        preds = {"seg_map":seg_map_list}
+        return preds
+        #print(dic)
+        # return preds
+        # return "Segmentation Fault"
     except:
     
         e = sys.exc_info()[1]
