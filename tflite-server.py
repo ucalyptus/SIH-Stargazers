@@ -104,14 +104,7 @@ async def predict_segment(image: UploadFile = File(...)):
         interpreter.invoke()
         # Retrieve the raw output map.
         raw_prediction = interpreter.tensor(interpreter.get_output_details()[0]['index'])()
-        #print(raw_prediction[0])
-        """width, height = cropped_image.size
-        seg_map = tf.argmax(tf.image.resize(raw_prediction, (height, width)), axis=3)
-        seg_map = tf.squeeze(seg_map).numpy().astype(np.int8)
-        
-        seg_map = seg_map.tolist()
-        print(type(seg_map))
-        #return seg_map"""
+
         seg_map = np.argmax(raw_prediction,axis=3)
         print(seg_map)
         seg_map = np.squeeze(seg_map).astype(np.int8)
