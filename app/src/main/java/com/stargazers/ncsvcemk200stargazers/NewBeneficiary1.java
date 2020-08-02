@@ -63,7 +63,7 @@ public class NewBeneficiary1 extends AppCompatActivity {
 //        bankName = findViewById(R.id.bankName);
 //        IFSC = findViewById(R.id.IFSC);
 //
-//        qrResult = findViewById(R.id.aadhaarQR);
+        qrResult = findViewById(R.id.aadhaarQR);
 //        acctNo = findViewById(R.id.acctNo);
 
 //        document = findViewById(R.id.aadhaar_image);
@@ -100,7 +100,7 @@ public class NewBeneficiary1 extends AppCompatActivity {
                 proceed.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        startActivity(new Intent(NewBeneficiary1.this, MainActivity.class));
                     }
                 });
             }
