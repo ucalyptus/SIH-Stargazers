@@ -97,34 +97,34 @@ async def predict_segment(image: UploadFile = File(...)):
         image_for_prediction = np.expand_dims(image_for_prediction, 0)
         image_for_prediction = image_for_prediction / 127.5 - 1
         # Load the model.
-       
+        interpreter = tflite.Interpreter(model_path=SEGMENTATION_MODEL)
+        # Invoke the interpreter to run inference.
         interpreter.allocate_tensors()
         interpreter.set_tensor(input_details[0]['index'], image_for_prediction)
-
         interpreter.invoke()
         # Retrieve the raw output map.
         raw_prediction = interpreter.tensor(interpreter.get_output_details()[0]['index'])()
         #print(raw_prediction[0])
-        ''''
-        width, height = cropped_image.size
-        print(raw_prediction.shape)
-        seg_n=np.resize(raw_prediction, (height, width))
-        seg_t=tf.image.resize(raw_prediction, (height, width))
-        print(seg_t.shape)
-        print(seg_n.shape)
-        '''
+        """width, height = cropped_image.size
+        seg_map = tf.argmax(tf.image.resize(raw_prediction, (height, width)), axis=3)
+        seg_map = tf.squeeze(seg_map).numpy().astype(np.int8)
+        
+        seg_map = seg_map.tolist()
+        print(type(seg_map))
+        #return seg_map"""
         seg_map = np.argmax(raw_prediction,axis=3)
         print(seg_map)
         seg_map = np.squeeze(seg_map).astype(np.int8)
         #print(seg_map)
         seg_map=np.where((seg_map<0),0,seg_map)
         seg_map_list = seg_map.tolist()
-        
-        preds = {"seg_map":seg_map_list}
+        preds = {}
+        preds["seg_map"] = seg_map_list
+        preds["success"] = True
         return preds
+        #preds = {"seg_map":seg_map}
         #print(dic)
-        # return preds
-        # return "Segmentation Fault"
+        #return preds
     except:
     
         e = sys.exc_info()[1]
