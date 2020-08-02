@@ -8,8 +8,10 @@
     tools:showIn="@layout/app_bar_main">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/newAwaas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,7 +21,7 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:padding="10dp"
                 android:scaleType="fitCenter"
                 app:lottie_autoPlay="false"
@@ -30,10 +32,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/oxygen_ex_bold"
-                android:gravity="center_horizontal|center_vertical"
-                android:paddingHorizontal="40dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="25dp"
                 android:paddingVertical="5dp"
-                android:text="Select Beneficiary category"
+                android:text="Hello Beneficiary,"
                 android:textColor="@color/colorAccent"
                 android:textSize="22sp" />
 
@@ -44,16 +46,16 @@
                 android:paddingVertical="5dp"
                 android:fontFamily="@font/oxygen_bold"
                 android:paddingHorizontal="25dp"
-                android:layout_marginTop="15dp"
-                android:text="For Beneficiaries applying for the first time"
+                android:layout_marginTop="0dp"
+                android:text="To apply for your new Awaas, press below"
                 android:textSize="15sp"/>
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/newRecord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
+                android:elevation="10dp"
                 app:cardUseCompatPadding="true"
                 app:cardBackgroundColor="@color/colorAccent"
                 android:layout_margin="10dp">
@@ -61,14 +63,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center">
+
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginVertical="5dp"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginStart="10dp"
                         android:tint="@color/colorTheme"
-                        android:src="@drawable/ic_outline_supervisor_account_24"
-                        />
+                        android:src="@drawable/ic_outline_home_24" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -76,11 +79,10 @@
                         android:textColor="#fff"
                         android:paddingHorizontal="10dp"
                         android:fontFamily="@font/oxygen_ex_bold"
-                        android:text="Create New Record"/>
+                        android:text="Apply for new Awaas"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -90,45 +92,71 @@
                 android:fontFamily="@font/oxygen_bold"
                 android:paddingHorizontal="25dp"
                 android:layout_marginTop="15dp"
-                android:text="Update status / details of existing beneficiaries"
+                android:text="For more details, contact below at the helpline no."
                 android:textSize="15sp"/>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/existing"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp"
-                app:cardUseCompatPadding="true"
-                app:cardBackgroundColor="@color/colorAccent"
-                android:layout_margin="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:tint="@color/colorTheme"
-                        android:src="@drawable/ic_outline_home_24" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#fff"
-                        android:textSize="20sp"
-                        android:paddingHorizontal="10dp"
-                        android:fontFamily="@font/oxygen_ex_bold"
-                        android:text="Update Existing record"/>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                android:gravity="center_vertical"
+                android:paddingBottom="5dp"
+                android:fontFamily="@font/oxygen_bold"
+                android:paddingHorizontal="25dp"
+                android:autoLink="all"
+                android:text="+916290438875"
+                android:textColorLink="@color/colorAttribute"
+                android:textSize="15sp"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/existing"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="25dp"
+                android:paddingTop="10dp"
+                android:text="Hello Beneficiary,"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/applicationDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingVertical="5dp"
+                android:fontFamily="@font/oxygen_bold"
+                android:paddingHorizontal="25dp"
+                android:layout_marginTop="0dp"
+                android:text="Your application status :"
+                android:textSize="15sp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/progressList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 
 </RelativeLayout>

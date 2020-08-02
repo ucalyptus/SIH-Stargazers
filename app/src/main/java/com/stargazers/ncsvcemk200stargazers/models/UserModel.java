@@ -8,6 +8,8 @@ public class UserModel {
     private String id;
     private String idProof;
 
+    private long statusApplication;
+
     public String getPhoneNo() {
         return phoneNo;
     }
@@ -46,5 +48,13 @@ public class UserModel {
 
     public void setIdProof(String idProof) {
         this.idProof = idProof;
+    }
+
+    public long getStatusApplication() {
+        return statusApplication;
+    }
+
+    public void setStatusApplication(long statusApplication) {
+        this.statusApplication = statusApplication;
     }
 }

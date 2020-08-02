@@ -5,27 +5,53 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.stargazers.ncsvcemk200stargazers.adapters.StatusAdapter;
+import com.stargazers.ncsvcemk200stargazers.models.ApplicationModel;
+import com.stargazers.ncsvcemk200stargazers.models.StatusModel;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawer;
-    private CardView newRecord, existingRecord;
+    private CardView newRecord;
 
+    private NestedScrollView newAwaas, existing;
+
+    private ProgressBar progressBar;
+
+
+    private TextView existingDetails;
+    private RecyclerView progressList;
+    ApplicationModel applicationModel;
+    private LinearLayoutManager layoutManager;
+    private StatusAdapter statusAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,36 +77,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        newRecord = findViewById(R.id.newRecord);
-        existingRecord = findViewById(R.id.existing);
-
         IntroPref introPref = new IntroPref(this);
 
+        progressBar = findViewById(R.id.progress);
+        progressBar.setVisibility(View.VISIBLE);
+
+        newAwaas = findViewById(R.id.newAwaas);
+        existing = findViewById(R.id.existing);
+
+        checkStatus();
+        //new
+        newRecord = findViewById(R.id.newRecord);
         PushDownAnim.setPushDownAnimTo(newRecord)
                 .setScale(PushDownAnim.MODE_STATIC_DP, 6)
                 .setOnClickListener(v -> {
                     Intent intent = new Intent(MainActivity.this, NewBeneficiary1.class);
                     startActivity(intent);
                 });
+        //new
 
-//        PushDownAnim.setPushDownAnimTo(existingRecord)
-////                .setScale(PushDownAnim.MODE_STATIC_DP, 6)
-////                .setOnClickListener(v -> {
-//////                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//////                    startActivity(intent);
-////                });
+        //existing
+        progressList = findViewById(R.id.progressList);
+
 
 
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main_activity2, menu);
-//        return true;
-//    }
-
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -145,5 +166,65 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    private void checkStatus() {
+        FirebaseFirestore.getInstance().document("Applications/" + FirebaseAuth.getInstance().getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    if(task.getResult().exists()){
+                        newAwaas.setVisibility(View.GONE);
+                        existing.setVisibility(View.VISIBLE);
+                        applicationModel = new ApplicationModel();
+                        applicationModel = task.getResult().toObject(ApplicationModel.class);
+                        SimpleDateFormat sfd = new SimpleDateFormat("dd MMMM, yyyy");
+                        String date = sfd.format(applicationModel.getTimestamp());
+                        existingDetails.setText("Application ID :"+applicationModel.getApplicationID()+"\nDate : "+date);
+                        buildRecyclerView();
+                    }
+                    else {
+                        newAwaas.setVisibility(View.VISIBLE);
+                        existing.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }
+                else {
+                    newAwaas.setVisibility(View.VISIBLE);
+                    existing.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
+    private void buildRecyclerView() {
+        layoutManager = new LinearLayoutManager(MainActivity.this);
+        progressList.setLayoutManager(layoutManager);
+        FirebaseFirestore.getInstance().collection("Applications/"+FirebaseAuth.getInstance().getUid()+"Statuses")
+                .orderBy("timestamp")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                ArrayList<StatusModel> statuses = new ArrayList<>();
+
+                for(QueryDocumentSnapshot document : task.getResult()) {
+                    StatusModel status = document.toObject(StatusModel.class);
+                    statuses.add(status);
+                }
+
+                statusAdapter = new StatusAdapter(statuses, MainActivity.this);
+                progressList.setAdapter(statusAdapter);
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkStatus();
     }
 }

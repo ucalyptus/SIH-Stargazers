@@ -48,12 +48,12 @@ public class NewBeneficiary1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_beneficiary);
-        Toolbar tb = findViewById(R.id.toolbar);
-        setSupportActionBar(tb);
-
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+//        Toolbar tb = findViewById(R.id.toolbar);
+//        setSupportActionBar(tb);
+//
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
 
         cameraPermission = new String[]{Manifest.permission.CAMERA};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -66,11 +66,11 @@ public class NewBeneficiary1 extends AppCompatActivity {
 //        qrResult = findViewById(R.id.aadhaarQR);
 //        acctNo = findViewById(R.id.acctNo);
 
-        document = findViewById(R.id.aadhaar_image);
+//        document = findViewById(R.id.aadhaar_image);
 
         scanQR = findViewById(R.id.scanQR);
         takePic = findViewById(R.id.take_aadhaar_image);
-//        proceed = findViewById(R.id.proceed);
+        proceed = findViewById(R.id.proceed);
 
         if(getIntent().getStringExtra("result") != null) {
             String result = getIntent().getStringExtra("result");
@@ -106,17 +106,12 @@ public class NewBeneficiary1 extends AppCompatActivity {
                 else {
                     Intent intent = new Intent(NewBeneficiary1.this, ScannerActivity.class);
                     startActivity(intent);
-                    finish();
                 }
             }
         });
 
-        proceed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        proceed.setClickable(false);
 
-            }
-        });
 
     }
 
@@ -149,16 +144,8 @@ public class NewBeneficiary1 extends AppCompatActivity {
                     boolean cameraAccepted = grantResults[0] ==
                             PackageManager.PERMISSION_GRANTED;
                     if(cameraAccepted ){
-                        if(sel == 1){
-                            Intent intent = new Intent(NewBeneficiary1.this, CameraActivity.class);
-                            intent.putExtra("type", "doc");
-                            startActivity(intent);
-                        }
-                        else if(sel == 2){
-                            Intent intent = new Intent(NewBeneficiary1.this, ScannerActivity.class);
-                            startActivity(intent);
-                        }
-
+                        Intent intent = new Intent(NewBeneficiary1.this, ScannerActivity.class);
+                        startActivity(intent);
                     }
                     else{
                         Toast.makeText(this,"permission denied", Toast.LENGTH_SHORT).show();
@@ -171,13 +158,55 @@ public class NewBeneficiary1 extends AppCompatActivity {
     /////////////////////PERMISSIONS////////////////////]
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if (id == android.R.id.home){
+//            super.onBackPressed();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
-        if (id == android.R.id.home){
-            super.onBackPressed();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(ScannerActivity.code!=null) {
+            String result = ScannerActivity.code;
+            if(result.contains("xml version")){
+                aadhaarForm = new AadhaarForm(result);
+                JValues = aadhaarForm.getJValues();
+
+                aadhaarModel = new AadhaarModel();
+                aadhaarModel.setUid(JValues.get("Aadhaar No"));
+                aadhaarModel.setName(JValues.get("Name"));
+                aadhaarModel.setGender(JValues.get("Gender"));
+                aadhaarModel.setDob(JValues.get("DOB"));
+                aadhaarModel.setCareof(JValues.get("Care Of"));
+                aadhaarModel.setBuildingNo(JValues.get("Building No"));
+                aadhaarModel.setStreet(JValues.get("Street"));
+                aadhaarModel.setVtc(JValues.get("VTC"));
+                aadhaarModel.setPo(JValues.get("Post Office"));
+                aadhaarModel.setDistrict(JValues.get("District"));
+                aadhaarModel.setSubDistrict(JValues.get("Sub District"));
+                aadhaarModel.setState(JValues.get("State"));
+                aadhaarModel.setPin(JValues.get("Pincode"));
+
+                qrResult.setText(aadhaarModel.toString());
+
+                proceed.setClickable(true);
+                proceed.setBackgroundTintList(NewBeneficiary1.this.getResources().getColorStateList(R.color.colorProceed));
+                proceed.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }
+            else {
+                Toast.makeText(NewBeneficiary1.this, "Please scan the QR code on your Aadhaar card.", Toast.LENGTH_LONG).show();
+            }
+
         }
-        return super.onOptionsItemSelected(item);
     }
 }

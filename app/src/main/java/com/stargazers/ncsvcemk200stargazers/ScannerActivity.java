@@ -10,9 +10,9 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     ZXingScannerView scannerView;
+    public static String code;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
@@ -23,12 +23,14 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     @Override
     public void handleResult(final Result result) {
 
-        final String code = result.getText();
+        code = result.getText();
         Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(ScannerActivity.this, NewBeneficiary1.class);
-        intent.putExtra("result", code);
-        startActivity(intent);
-        finish();
+        super.onBackPressed();
+
+//        Intent intent = new Intent(ScannerActivity.this, NewBeneficiary1.class);
+//        intent.putExtra("result", code);
+//        startActivity(intent);
+//        finish();
 
     }
 

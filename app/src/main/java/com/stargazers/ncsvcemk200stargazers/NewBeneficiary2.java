@@ -61,7 +61,7 @@ import retrofit2.Retrofit;
 
 public class NewBeneficiary2 extends AppCompatActivity {
 
-    Button takePic;
+    Button takePic, proceed;
     ImageView pic;
 
     private static final int CAMERA_REQUEST_CODE = 200;
@@ -70,6 +70,9 @@ public class NewBeneficiary2 extends AppCompatActivity {
     private static final int STORAGE_REQUEST_CODE = 400;
 
     String label;
+
+    private ProgressDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,18 +91,28 @@ public class NewBeneficiary2 extends AppCompatActivity {
 
         takePic = findViewById(R.id.take_aadhaar_image);
         pic = findViewById(R.id.aadhaar_image);
+        proceed = findViewById(R.id.proceed);
+
 
         takePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!checkCameraPermission()) {
+                if (!checkCameraPermission() || !checkStoragePermission()) {
                     requestCameraPermission();
+                    requestStoragePermission();
                 }
                 else {
                     Intent intent = new Intent(NewBeneficiary2.this, CameraActivity.class);
                     intent.putExtra("type", "doc");
                     startActivity(intent);
                 }
+            }
+        });
+
+        proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -211,11 +224,11 @@ public class NewBeneficiary2 extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        File file = new File(Environment.getExternalStorageDirectory()+"/Awaas/.documents","temp.jpg");
+//        File file = new File(Environment.getExternalStorageDirectory()+"/Awaas/.documents","temp.jpg");
         if(ScannerConstants.selectedImageBitmap != null){
             uploadImage();
+            ScannerConstants.selectedImageBitmap = null;
 //            new uploadImage().execute();
-
         }
     }
 

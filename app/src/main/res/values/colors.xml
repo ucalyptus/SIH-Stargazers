@@ -10,5 +10,5 @@
 <!--    <color name="colorTheme">#2680EB</color>-->
 
     <color name="colorTheme">#ffc107</color>
-
+    <color name="colorProceed">#a7f107</color>
 </resources>

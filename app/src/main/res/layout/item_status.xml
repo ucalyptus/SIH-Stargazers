@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="15dp"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <View
+            android:id="@+id/up"
+            android:layout_width="5dp"
+            android:layout_height="15dp"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="1"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp"
+            android:fontFamily="@font/oxygen_ex_bold"
+            android:backgroundTint="@color/colorTheme"
+            android:background="@drawable/page_count_bg"/>
+
+        <View
+            android:id="@+id/down"
+            android:layout_width="5dp"
+            android:layout_height="15dp"
+            android:background="@color/colorAccent"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/stage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plinth Stage"
+            android:textColor="#212121"
+            android:fontFamily="@font/oxygen_ex_bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="21/12/2019"
+            android:textColor="#212121"
+            android:fontFamily="@font/oxygen_bold"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

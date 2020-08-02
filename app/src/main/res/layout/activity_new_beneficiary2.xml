@@ -50,9 +50,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="5dp"
         android:layout_below="@+id/title"
-        android:layout_alignBottom="@+id/take_aadhaar_image"
+        android:layout_alignBottom="@+id/proceed"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="60dp">
@@ -66,6 +66,18 @@
             android:scaleType="centerCrop" />
 
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/proceed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:background="@drawable/custom_button"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_above="@+id/take_aadhaar_image"
+        android:backgroundTint="#cbcbcb"/>
 
     <Button
         android:id="@+id/take_aadhaar_image"
