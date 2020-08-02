@@ -20,6 +20,7 @@ MIN_CONFIDENCE = 0.1  # The absolute lowest confidence for a detection.
 # FACE_DETECTION_URL = "/v1/vision/face"
 # OBJ_DETECTION_URL = "/v1/vision/detection"
 STAGE_URL = "/v1/vision/stage"
+SEGMENTATION_URL = "/v1/vision/seg"
 # Models and labels
 # FACE_MODEL = "models/face_detection/mobilenet_ssd_v2_face/mobilenet_ssd_v2_face_quant_postprocess.tflite"
 # OBJ_MODEL = "models/object_detection/mobilenet_ssd_v2_coco/mobilenet_ssd_v2_coco_quant_postprocess.tflite"
@@ -53,6 +54,16 @@ stage_output_details = stage_interpreter.get_output_details()
 stage_input_height = stage_input_details[0]["shape"][1]
 stage_input_width = stage_input_details[0]["shape"][2]
 stage_labels = read_labels(SCENE_LABELS)
+
+
+interpreter = tf.lite.Interpreter(model_path=SEGMENTATION_MODEL)
+
+# Set model input.
+input_details = interpreter.get_input_details()
+interpreter.allocate_tensors()
+
+# get image size - converting from BHWC to WH
+input_size = input_details[0]['shape'][2], input_details[0]['shape'][1]
 
 
 @app.get("/")
@@ -191,6 +202,7 @@ async def predict_segment(image: UploadFile = File(...)):
         # Invoke the interpreter to run inference.
         interpreter.allocate_tensors()
         interpreter.set_tensor(input_details[0]['index'], image_for_prediction)
+
         interpreter.invoke()
         # Retrieve the raw output map.
         raw_prediction = interpreter.tensor(interpreter.get_output_details()[0]['index'])()
@@ -198,11 +210,14 @@ async def predict_segment(image: UploadFile = File(...)):
         width, height = cropped_image.size
         seg_map = tf.argmax(tf.image.resize(raw_prediction, (height, width)), axis=3)
         seg_map = tf.squeeze(seg_map).numpy().astype(np.int8)
-        
-        #return seg_map"""
-        preds = {"seg_map":seg_map}
+        #print(seg_map)
+        seg_map=np.where((seg_map<0),0,seg_map)
+        seg_map_list = seg_map.tolist()
+        return seg_map_list
+        # preds = {"seg_map":seg_map}
         #print(dic)
-        return preds
+        # return preds
+        # return "Segmentation Fault"
     except:
     
         e = sys.exc_info()[1]
