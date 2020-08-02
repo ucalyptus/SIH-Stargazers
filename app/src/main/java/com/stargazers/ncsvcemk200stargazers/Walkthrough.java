@@ -158,7 +158,7 @@ public class Walkthrough extends AppCompatActivity {
 
     private void launchHomeScreen() {
         introPref.setIsFirstTimeLaunch(false);
-        startActivity(new Intent(Walkthrough.this, MainActivity.class));
+        startActivity(new Intent(Walkthrough.this, PickAccountTypeActivity.class));
         finish();
     }
 }

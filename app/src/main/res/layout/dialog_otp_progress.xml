@@ -71,7 +71,7 @@
             android:fontFamily="monospace"
             android:digits="0123456789"
             android:textSize="20dp"
-            android:letterSpacing="5"
+            android:letterSpacing="2"
             android:padding="5dp"/>
         <View
             android:layout_width="match_parent"

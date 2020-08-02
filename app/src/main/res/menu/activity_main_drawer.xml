@@ -25,7 +25,7 @@
             <item
                 android:id="@+id/language"
                 android:title="Change language"
-                android:icon="@drawable/ic_arrow_back_black_24dp" />
+                android:icon="@drawable/ic_twotone_translate_24" />
 
             <item
                 android:id="@+id/log_out"

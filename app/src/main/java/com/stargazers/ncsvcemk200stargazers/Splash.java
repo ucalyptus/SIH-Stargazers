@@ -50,20 +50,27 @@ public class Splash extends AppCompatActivity {
                             .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            UserModel userModel = new UserModel();
-                            userModel = task.getResult().toObject(UserModel.class);
-                            if(userModel.getAccountType() == 1){
-                                introPref.setAccountType(1);
+                            if(task.isSuccessful()){
+                                UserModel userModel = new UserModel();
+                                userModel = task.getResult().toObject(UserModel.class);
+                                if(userModel.getAccountType() == 1){
+                                    introPref.setAccountType(1);
+                                    Intent homeIntent = new Intent(Splash.this, MainActivity.class);
+                                    startActivity(homeIntent);
+                                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    finish();
+                                }
+                                else {
+                                    introPref.setAccountType(0);
+                                }
                             }
                             else {
-                                introPref.setAccountType(0);
+
                             }
+
                         }
                     });
-                    Intent homeIntent = new Intent(Splash.this, MainActivity.class);
-                    startActivity(homeIntent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    finish();
+
                 }, Splash_time_out);
             }
             else {

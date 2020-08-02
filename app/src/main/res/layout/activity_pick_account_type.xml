@@ -22,7 +22,7 @@
                 android:padding="10dp"
                 android:scaleType="fitCenter"
                 app:lottie_autoPlay="false"
-                app:lottie_fileName="lf30_editor_Nq4kpY.json"
+                app:lottie_fileName="house_roof_jump.json"
                 app:lottie_loop="false" />
 
             <TextView

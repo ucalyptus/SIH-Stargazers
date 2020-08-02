@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +36,9 @@ public class LoginActivity extends AppCompatActivity {
     String verificationId;
 
     IntroPref introPref;
+
+    private ImageView back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,14 @@ public class LoginActivity extends AppCompatActivity {
 
         mCode = findViewById(R.id.code);
         mPhoneNo = findViewById(R.id.phone);
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.super.onBackPressed();
+            }
+        });
 
         myDialogue = new Dialog(LoginActivity.this);
 

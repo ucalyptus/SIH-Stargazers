@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,6 +25,7 @@ public class PickAccountTypeActivity extends AppCompatActivity {
 
         officer = findViewById(R.id.Officer);
         benificiary = findViewById(R.id.Benificary);
+
         IntroPref introPref = new IntroPref(this);
 
         PushDownAnim.setPushDownAnimTo(officer)
@@ -43,12 +45,8 @@ public class PickAccountTypeActivity extends AppCompatActivity {
                     startActivity(intent);
                 });
 
-//        officer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+
+
 //
 //        benificiary.setOnClickListener(new View.OnClickListener() {
 //            @Override

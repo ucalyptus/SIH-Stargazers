@@ -20,7 +20,7 @@
             android:padding="10dp"
             app:lottie_fileName="6711-home.json"
             app:lottie_loop="false"
-            app:lottie_autoPlay="true"
+            app:lottie_autoPlay="false"
             android:scaleType="fitCenter"/>
 
     </LinearLayout>
