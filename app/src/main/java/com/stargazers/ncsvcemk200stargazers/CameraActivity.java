@@ -359,6 +359,8 @@ public class CameraActivity extends AppCompatActivity {
                                 bitmap = Bitmap.createBitmap(bitmap, 0 ,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true ) ;
                             }
                             //fix orientation
+
+
                             File imageFile = new File(Environment.getExternalStorageDirectory() + "/Awaas/", "temp.jpg");
 
                             try (FileOutputStream out = new FileOutputStream(imageFile)){
@@ -367,6 +369,8 @@ public class CameraActivity extends AppCompatActivity {
 //                                Toast.makeText(CameraActivity.this, "here", Toast.LENGTH_LONG).show();
                                 e.printStackTrace();
                             }
+
+
 
                             ScannerConstants.selectedImageBitmap = bitmap;
                             CameraActivity.super.onBackPressed();

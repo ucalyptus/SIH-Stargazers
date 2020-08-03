@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stargazers.ncsvcemk200stargazers.models.AadhaarModel;
+import com.stargazers.ncsvcemk200stargazers.models.ApplicationModel;
 import com.stargazers.ncsvcemk200stargazers.util.AadhaarForm;
 
 import java.util.TreeMap;
@@ -43,6 +44,8 @@ public class NewBeneficiary1 extends AppCompatActivity {
 
     AadhaarModel aadhaarModel;
 
+    public static ApplicationModel applicationModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,8 @@ public class NewBeneficiary1 extends AppCompatActivity {
 //        IFSC = findViewById(R.id.IFSC);
 //        acctNo = findViewById(R.id.acctNo);
 
+        applicationModel = new ApplicationModel();
+
         qrResult = findViewById(R.id.aadhaarQR);
 
         scanQR = findViewById(R.id.scanQR);
@@ -72,7 +77,6 @@ public class NewBeneficiary1 extends AppCompatActivity {
 
         if(getIntent().getStringExtra("result") != null) {
             String result = getIntent().getStringExtra("result");
-            if(result.contains("xml version")){
                 aadhaarForm = new AadhaarForm(result);
                 JValues = aadhaarForm.getJValues();
 
@@ -98,14 +102,12 @@ public class NewBeneficiary1 extends AppCompatActivity {
                 proceed.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        applicationModel.setAadhaarModel(aadhaarModel);
                         startActivity(new Intent(NewBeneficiary1.this, NewBeneficiary2.class));
 //                        overridePendingTransition();
                     }
                 });
-            }
-            else {
-                Toast.makeText(NewBeneficiary1.this, "Please scan the QR code on your Aadhaar card.", Toast.LENGTH_LONG).show();
-            }
+
         }
         else {
             proceed.setClickable(false);

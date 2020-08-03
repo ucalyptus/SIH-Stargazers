@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewBeneficiary2">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="20dp">
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:lottie_autoPlay="false"
+                app:lottie_fileName="house_roof_jump.json"
+                app:lottie_loop="false" />
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:gravity="center"-->
+<!--                android:src/>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Picture of the House/Construction Site"
+                android:fontFamily="@font/oxygen_ex_bold"
+                android:textColor="#212121"
+                android:paddingVertical="10dp"
+                android:paddingEnd="20dp"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="To click a picture press the 'Take picture' button"
+            android:paddingHorizontal="20dp"
+            android:textColor="#212121"/>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
+        android:layout_below="@+id/title"
+        android:layout_alignBottom="@+id/proceed"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="60dp">
+
+        <ImageView
+            android:id="@+id/aadhaar_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Scan the QR code on your Aadhaar card"
+            android:textColor="#212121"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/proceed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:background="@drawable/custom_button"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_above="@+id/take_aadhaar_image"
+        android:backgroundTint="#cbcbcb"/>
+
+    <Button
+        android:id="@+id/take_aadhaar_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Take Picture "
+        android:background="@drawable/custom_button"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorTheme"/>
+
+</RelativeLayout>

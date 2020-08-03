@@ -10,6 +10,10 @@ public class ApplicationModel {
     private String applicationID;
     @ServerTimestamp private Timestamp timestamp;
 
+    private String docPic;
+
+    private AadhaarModel aadhaarModel;
+
     public String getApplicationID() {
         return applicationID;
     }
@@ -26,4 +30,19 @@ public class ApplicationModel {
         this.timestamp = timestamp;
     }
 
+    public String getDocPic() {
+        return docPic;
+    }
+
+    public void setDocPic(String docPic) {
+        this.docPic = docPic;
+    }
+
+    public AadhaarModel getAadhaarModel() {
+        return aadhaarModel;
+    }
+
+    public void setAadhaarModel(AadhaarModel aadhaarModel) {
+        this.aadhaarModel = aadhaarModel;
+    }
 }

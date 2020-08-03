@@ -16,6 +16,7 @@ public class AadhaarModel {
     private String state;
     private String pin;
 
+
     public String getUid() {
         return uid;
     }

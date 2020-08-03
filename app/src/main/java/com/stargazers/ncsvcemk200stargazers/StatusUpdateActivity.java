@@ -2,26 +2,18 @@ package com.stargazers.ncsvcemk200stargazers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,10 +44,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 import java.util.Objects;
 
 import id.zelory.compressor.Compressor;
@@ -69,7 +56,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class NewBeneficiary2 extends AppCompatActivity {
+public class StatusUpdateActivity extends AppCompatActivity {
 
     Button takePic, proceed;
     ImageView pic;
@@ -89,14 +76,7 @@ public class NewBeneficiary2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_beneficiary2);
-
-//        Toolbar tb = findViewById(R.id.toolbar);
-//        setSupportActionBar(tb);
-//
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        setContentView(R.layout.activity_status_update);
 
         cameraPermission = new String[]{Manifest.permission.CAMERA};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -104,7 +84,6 @@ public class NewBeneficiary2 extends AppCompatActivity {
         takePic = findViewById(R.id.take_aadhaar_image);
         pic = findViewById(R.id.aadhaar_image);
         proceed = findViewById(R.id.proceed);
-
 
         takePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,13 +93,12 @@ public class NewBeneficiary2 extends AppCompatActivity {
                     requestStoragePermission();
                 }
                 else {
-                    Intent intent = new Intent(NewBeneficiary2.this, CameraActivity.class);
-                    intent.putExtra("type", "doc");
+                    Intent intent = new Intent(StatusUpdateActivity.this, CameraActivity.class);
+                    intent.putExtra("type", "house");
                     startActivity(intent);
                 }
             }
         });
-
 
     }
 
@@ -153,7 +131,7 @@ public class NewBeneficiary2 extends AppCompatActivity {
                     boolean cameraAccepted = grantResults[0] ==
                             PackageManager.PERMISSION_GRANTED;
                     if(cameraAccepted ){
-                        Intent intent = new Intent(NewBeneficiary2.this, CameraActivity.class);
+                        Intent intent = new Intent(StatusUpdateActivity.this, CameraActivity.class);
                         intent.putExtra("type", "doc");
                         startActivity(intent);
                     }
@@ -168,31 +146,31 @@ public class NewBeneficiary2 extends AppCompatActivity {
     /////////////////////PERMISSIONS////////////////////
 
     private void uploadImage() {
-        File imageFile = new File(Environment.getExternalStorageDirectory() + "/Awaas/", "temp.jpg");
+//        File imageFile = new File(Environment.getExternalStorageDirectory() + "/Awaas/", "house.jpg");
 
-        File compressedImageFile = null;
-        try {
-            compressedImageFile = new Compressor(NewBeneficiary2.this).compressToFile(imageFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try (InputStream inputStream = new FileInputStream(Objects.requireNonNull(compressedImageFile))){
-            try (OutputStream outputStream = new FileOutputStream(imageFile)) {
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = inputStream.read(buf)) > 0) {
-                    outputStream.write(buf, 0 ,len);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//            Save to file
+//        File compressedImageFile = null;
+//        try {
+//            compressedImageFile = new Compressor(StatusUpdateActivity.this).compressToFile(imageFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try (InputStream inputStream = new FileInputStream(Objects.requireNonNull(compressedImageFile))){
+//            try (OutputStream outputStream = new FileOutputStream(imageFile)) {
+//                byte[] buf = new byte[1024];
+//                int len;
+//                while ((len = inputStream.read(buf)) > 0) {
+//                    outputStream.write(buf, 0 ,len);
+//                }
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+////            Save to file
 
         File file = new File(Environment.getExternalStorageDirectory()+"/Awaas/","temp.jpg");
-        Picasso.get().load(file).memoryPolicy(MemoryPolicy.NO_CACHE)
-                .into(pic);
+//        Picasso.get().load(file).memoryPolicy(MemoryPolicy.NO_CACHE)
+//                .into(pic);
 
         Retrofit retrofit = NetworkClient.getRetrofit();
 
@@ -211,6 +189,7 @@ public class NewBeneficiary2 extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(jo.string());
                     label = jsonObject.get("label").toString();
+                    Toast.makeText(StatusUpdateActivity.this, label , Toast.LENGTH_LONG).show();
 //                    String label = jsonObject.get("confidence").toString();
 //                    String label = jsonObject.get("s").toString();
 
@@ -222,23 +201,23 @@ public class NewBeneficiary2 extends AppCompatActivity {
 
             @Override
             public void onFailure(Call call, Throwable t) {
-                Toast.makeText(NewBeneficiary2.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(StatusUpdateActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         });
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
         if(ScannerConstants.selectedImageBitmap != null){
-//            uploadImage();
-            bitmap = ScannerConstants.selectedImageBitmap;
 
+            bitmap = ScannerConstants.selectedImageBitmap;
             File imageFile = new File(Environment.getExternalStorageDirectory() + "/Awaas/", "temp.jpg");
             File compressedImageFile = null;
             try {
-                compressedImageFile = new Compressor(NewBeneficiary2.this).compressToFile(imageFile);
+                compressedImageFile = new Compressor(StatusUpdateActivity.this).compressToFile(imageFile);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -256,6 +235,9 @@ public class NewBeneficiary2 extends AppCompatActivity {
             }
 //            Save to file
 
+            uploadImage();
+
+
             File file = new File(Environment.getExternalStorageDirectory()+"/Awaas/","temp.jpg");
             bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -266,12 +248,12 @@ public class NewBeneficiary2 extends AppCompatActivity {
                     .into(pic);
 
             proceed.setClickable(true);
-            proceed.setBackgroundTintList(NewBeneficiary2.this.getResources().getColorStateList(R.color.colorProceed));
+            proceed.setBackgroundTintList(StatusUpdateActivity.this.getResources().getColorStateList(R.color.colorProceed));
             proceed.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(NewBeneficiary2.this, "Please wait", Toast.LENGTH_LONG).show();
-                    databaseUpload();
+                    Toast.makeText(StatusUpdateActivity.this, "Please wait", Toast.LENGTH_LONG).show();
+//                    databaseUpload();
                 }
             });
             ScannerConstants.selectedImageBitmap = null;
@@ -287,7 +269,7 @@ public class NewBeneficiary2 extends AppCompatActivity {
 //        byte[] by = out.toByteArray();
         StorageReference reference;
 
-        Toast.makeText(NewBeneficiary2.this, ""+by.length, Toast.LENGTH_SHORT).show();
+        Toast.makeText(StatusUpdateActivity.this, ""+by.length, Toast.LENGTH_SHORT).show();
 
         reference = FirebaseStorage.getInstance().getReference().child("Applications/").child(FirebaseAuth.getInstance().getUid() + "_doc");
         reference.putBytes(by).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -304,7 +286,7 @@ public class NewBeneficiary2 extends AppCompatActivity {
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(NewBeneficiary2.this, "Completed", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(StatusUpdateActivity.this, "Completed", Toast.LENGTH_LONG).show();
                                     }
                                 });
 
@@ -315,85 +297,4 @@ public class NewBeneficiary2 extends AppCompatActivity {
 
     }
 
-
-
-//    class uploadImage extends AsyncTask<Void, Void, Void> {
-//
-//        String data;
-//        private ProgressDialog dialog;
-//
-//        @Override
-//        protected void onPreExecute() {
-////            dialog = new ProgressDialog(NewBeneficiary2.this);
-////            dialog.setTitle("Loading your PDFs");
-////            dialog.setMessage("Please wait...");
-////            dialog.setCancelable(false);
-////            dialog.show();
-//
-//            File file = new File(Environment.getExternalStorageDirectory()+"/Awaas/","temp.jpg");
-//            Picasso.get().load(file)
-//                    .into(pic);
-//
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//            //Save to file
-//            File imageFile = new File(Environment.getExternalStorageDirectory() + "/Awaas/", "temp.jpg");
-//
-//            File compressedImageFile = null;
-//            try {
-//                compressedImageFile = new Compressor(NewBeneficiary2.this).compressToFile(imageFile);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            try (InputStream inputStream = new FileInputStream(Objects.requireNonNull(compressedImageFile))){
-//                try (OutputStream outputStream = new FileOutputStream(imageFile)) {
-//                    byte[] buf = new byte[1024];
-//                    int len;
-//                    while ((len = inputStream.read(buf)) > 0) {
-//                        outputStream.write(buf, 0 ,len);
-//                    }
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-////            Save to file
-//
-//            File file = new File(Environment.getExternalStorageDirectory()+"/Awaas/","temp.jpg");
-//
-//            Retrofit retrofit = NetworkClient.getRetrofit();
-//
-//            RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
-//            MultipartBody.Part parts = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
-//
-////            RequestBody someData = RequestBody.create(MediaType.parse("text/plain"), "This is a new Image");
-//
-//            UploadApis uploadApis = retrofit.create(UploadApis.class);
-//            Call call = uploadApis.uploadImage(parts);
-//            call.enqueue(new Callback() {
-//                @Override
-//                public void onResponse(Call call, Response response) {
-//                    Log.d("hmm", response.toString());
-//                    data = "data:"+response.toString();
-//                }
-//
-//                @Override
-//                public void onFailure(Call call, Throwable t) {
-//                    data = "failed";
-//                }
-//            });
-//            return null;
-//        }
-//
-//        @SuppressLint("ShowToast")
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-////            if (dialog.isShowing()) {
-////                dialog.dismiss();
-////            }
-//            Toast.makeText(NewBeneficiary2.this, data, Toast.LENGTH_LONG).show();
-//        }
-//    }
 }

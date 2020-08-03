@@ -13,20 +13,20 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".NewBeneficiary2"
-            android:launchMode="singleTop"/>
-
-        <activity android:name=".NewBeneficiary1"
-            android:launchMode="singleTop"/>
-
+        <activity android:name=".StatusUpdateActivity"></activity>
+        <activity
+            android:name=".NewBeneficiary2"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".NewBeneficiary1"
+            android:launchMode="singleTop" />
         <activity
             android:name=".Splash"
             android:screenOrientation="portrait"

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ApplicationModel applicationModel;
     private LinearLayoutManager layoutManager;
     private StatusAdapter statusAdapter;
+    private Button newStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +100,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //existing
         progressList = findViewById(R.id.progressList);
-
+        existingDetails = findViewById(R.id.applicationDetails);
+        newStatus = findViewById(R.id.newStatus);
+        newStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, StatusUpdateActivity.class));
+            }
+        });
 
 
     }
@@ -180,9 +189,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         existing.setVisibility(View.VISIBLE);
                         applicationModel = new ApplicationModel();
                         applicationModel = task.getResult().toObject(ApplicationModel.class);
+                        applicationModel.setApplicationID(task.getResult().getId());
                         SimpleDateFormat sfd = new SimpleDateFormat("dd MMMM, yyyy");
-                        String date = sfd.format(applicationModel.getTimestamp());
-                        existingDetails.setText("Application ID :"+applicationModel.getApplicationID()+"\nDate : "+date);
+                        String date = sfd.format(applicationModel.getTimestamp().toDate());
+                        existingDetails.setText("Application ID :\n"+applicationModel.getApplicationID()+"\n\nDate : "+date);
                         buildRecyclerView();
                     }
                     else {
@@ -203,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void buildRecyclerView() {
         layoutManager = new LinearLayoutManager(MainActivity.this);
         progressList.setLayoutManager(layoutManager);
-        FirebaseFirestore.getInstance().collection("Applications/"+FirebaseAuth.getInstance().getUid()+"Statuses")
+        FirebaseFirestore.getInstance().collection("Applications/"+FirebaseAuth.getInstance().getUid()+"/Statuses")
                 .orderBy("timestamp")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
