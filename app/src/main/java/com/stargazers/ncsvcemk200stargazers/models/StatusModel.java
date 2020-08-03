@@ -1,13 +1,17 @@
 package com.stargazers.ncsvcemk200stargazers.models;
 
-import java.sql.Timestamp;
+
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.GeoPoint;
+
 import java.util.ArrayList;
 
 public class StatusModel {
 
     private String stageName;
     private Timestamp timestamp;
-    private ArrayList<String> images;
+    private String images;
+    private GeoPoint geotag;
 
     public String getStageName() {
         return stageName;
@@ -25,11 +29,19 @@ public class StatusModel {
         this.timestamp = timestamp;
     }
 
-    public ArrayList<String> getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<String> images) {
+    public void setImages(String images) {
         this.images = images;
+    }
+
+    public GeoPoint getGeotag() {
+        return geotag;
+    }
+
+    public void setGeotag(GeoPoint geotag) {
+        this.geotag = geotag;
     }
 }

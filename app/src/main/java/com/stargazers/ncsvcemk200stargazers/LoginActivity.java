@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ImageView back;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,10 +173,18 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
-                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                intent.putExtra("phone",mPhoneNo.getText().toString().trim());
-                                                startActivity(intent);
+                                                if(introPref.getAccountType() == 1){ //normal
+                                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    intent.putExtra("phone",mPhoneNo.getText().toString().trim());
+                                                    startActivity(intent);
+                                                }
+                                                if(introPref.getAccountType() == 0){ //normal
+                                                    Intent intent = new Intent(getApplicationContext(), AdminPanelActivity.class);
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    intent.putExtra("phone",mPhoneNo.getText().toString().trim());
+                                                    startActivity(intent);
+                                                }
                                             }
                                             else {
                                                 Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_LONG).show();

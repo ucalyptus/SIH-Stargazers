@@ -11,6 +11,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,17 +23,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.labters.documentscanner.helpers.ScannerConstants;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
+import com.stargazers.ncsvcemk200stargazers.models.StatusModel;
 import com.stargazers.ncsvcemk200stargazers.util.NetworkClient;
 import com.stargazers.ncsvcemk200stargazers.util.UploadApis;
 
@@ -44,6 +52,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import id.zelory.compressor.Compressor;
@@ -73,6 +83,11 @@ public class StatusUpdateActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private byte[] by;
 
+    private StatusModel statusModel;
+
+    FusedLocationProviderClient fusedLocationProviderClient;
+    List<Address> addresses;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,9 +96,15 @@ public class StatusUpdateActivity extends AppCompatActivity {
         cameraPermission = new String[]{Manifest.permission.CAMERA};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
+        dialog = new ProgressDialog(StatusUpdateActivity.this);
+
+
         takePic = findViewById(R.id.take_aadhaar_image);
         pic = findViewById(R.id.aadhaar_image);
         proceed = findViewById(R.id.proceed);
+
+        statusModel = new StatusModel();
+
 
         takePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,15 +112,65 @@ public class StatusUpdateActivity extends AppCompatActivity {
                 if (!checkCameraPermission() || !checkStoragePermission()) {
                     requestCameraPermission();
                     requestStoragePermission();
-                }
-                else {
-                    Intent intent = new Intent(StatusUpdateActivity.this, CameraActivity.class);
-                    intent.putExtra("type", "house");
-                    startActivity(intent);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(StatusUpdateActivity.this
+                            , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        getLocation();
+                        Intent intent = new Intent(StatusUpdateActivity.this, CameraActivity.class);
+                        intent.putExtra("type", "house");
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(StatusUpdateActivity.this, "Please turn on location", Toast.LENGTH_SHORT).show();
+                        ActivityCompat.requestPermissions(StatusUpdateActivity.this,
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+                    }
+
                 }
             }
         });
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(StatusUpdateActivity.this);
+
+        if (ActivityCompat.checkSelfPermission(StatusUpdateActivity.this
+                , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(StatusUpdateActivity.this, "Please turn on location", Toast.LENGTH_SHORT).show();
+        } else {
+            ActivityCompat.requestPermissions(StatusUpdateActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
+
+    }
+
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+                if(location != null) {
+                    Geocoder geocoder = new Geocoder(StatusUpdateActivity.this, Locale.getDefault());
+
+                    try {
+                        addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                        GeoPoint geoPoint = new GeoPoint(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
+                        statusModel.setGeotag(geoPoint);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
     }
 
     /////////////////////PERMISSIONS////////////////////
@@ -167,17 +238,12 @@ public class StatusUpdateActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 ////            Save to file
-
         File file = new File(Environment.getExternalStorageDirectory()+"/Awaas/","temp.jpg");
-//        Picasso.get().load(file).memoryPolicy(MemoryPolicy.NO_CACHE)
-//                .into(pic);
 
         Retrofit retrofit = NetworkClient.getRetrofit();
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part parts = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
-
-//        RequestBody someData = RequestBody.create(MediaType.parse("text/plain"), "This is a new Image");
 
         UploadApis uploadApis = retrofit.create(UploadApis.class);
         Call call = uploadApis.uploadImage(parts);
@@ -190,6 +256,11 @@ public class StatusUpdateActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(jo.string());
                     label = jsonObject.get("label").toString();
                     Toast.makeText(StatusUpdateActivity.this, label , Toast.LENGTH_LONG).show();
+                    dialog.setTitle("Updating status...");
+                    dialog.setMessage(label+" stage");
+                    statusModel.setStageName(label+" stage");
+                    statusModel.setTimestamp(Timestamp.now());
+                    databaseUpload();
 //                    String label = jsonObject.get("confidence").toString();
 //                    String label = jsonObject.get("s").toString();
 
@@ -201,6 +272,7 @@ public class StatusUpdateActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call call, Throwable t) {
+                dialog.dismiss();
                 Toast.makeText(StatusUpdateActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
 
             }
@@ -235,6 +307,10 @@ public class StatusUpdateActivity extends AppCompatActivity {
             }
 //            Save to file
 
+            dialog.setTitle("Validating picture...");
+            dialog.setMessage("Please wait...");
+            dialog.setCancelable(false);
+            dialog.show();
             uploadImage();
 
 
@@ -246,16 +322,6 @@ public class StatusUpdateActivity extends AppCompatActivity {
 
             Picasso.get().load(file).memoryPolicy(MemoryPolicy.NO_CACHE)
                     .into(pic);
-
-            proceed.setClickable(true);
-            proceed.setBackgroundTintList(StatusUpdateActivity.this.getResources().getColorStateList(R.color.colorProceed));
-            proceed.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(StatusUpdateActivity.this, "Please wait", Toast.LENGTH_LONG).show();
-//                    databaseUpload();
-                }
-            });
             ScannerConstants.selectedImageBitmap = null;
         }
     }
@@ -269,7 +335,7 @@ public class StatusUpdateActivity extends AppCompatActivity {
 //        byte[] by = out.toByteArray();
         StorageReference reference;
 
-        Toast.makeText(StatusUpdateActivity.this, ""+by.length, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(StatusUpdateActivity.this, ""+by.length, Toast.LENGTH_SHORT).show();
 
         reference = FirebaseStorage.getInstance().getReference().child("Applications/").child(FirebaseAuth.getInstance().getUid() + "_doc");
         reference.putBytes(by).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -279,13 +345,17 @@ public class StatusUpdateActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         String generatedFilePath = uri.toString();
-                        NewBeneficiary1.applicationModel.setDocPic(generatedFilePath);
+                        statusModel.setImages(generatedFilePath);
 
-                        FirebaseFirestore.getInstance().document("Applications/"+FirebaseAuth.getInstance().getUid()+"/")
-                                .set(NewBeneficiary1.applicationModel)
+                        FirebaseFirestore.getInstance().collection("Applications/"+FirebaseAuth.getInstance().getUid()+"/Statuses")
+                                .document()
+                                .set(statusModel)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
+                                        startActivity(new Intent(StatusUpdateActivity.this, MainActivity.class));
+                                        finish();
+                                        dialog.dismiss();
                                         Toast.makeText(StatusUpdateActivity.this, "Completed", Toast.LENGTH_LONG).show();
                                     }
                                 });

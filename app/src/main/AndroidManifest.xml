@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.stargazers.ncsvcemk200stargazers">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,7 +21,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StatusUpdateActivity"></activity>
+        <activity android:name=".StatusAdminActivity"></activity>
+        <activity
+            android:name=".AdminPanelActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".StatusUpdateActivity" />
         <activity
             android:name=".NewBeneficiary2"
             android:launchMode="singleTop" />
@@ -45,6 +50,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CameraActivity"

@@ -104,6 +104,7 @@
                 android:paddingHorizontal="25dp"
                 android:autoLink="all"
                 android:text="+916290438875"
+                android:drawableStart="@drawable/ic_baseline_call_24"
                 android:textColorLink="@color/colorAttribute"
                 android:textSize="15sp"/>
 
@@ -115,6 +116,7 @@
         android:layout_width="match_parent"
         android:visibility="visible"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -134,7 +136,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="15dp"
                 app:cardCornerRadius="10dp"
                 android:layout_marginVertical="5dp"
                 android:paddingVertical="10dp">
@@ -163,7 +165,7 @@
                         android:backgroundTint="@color/colorTheme"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Update Awaas ststus"/>
+                        android:text="Update Awaas status"/>
 
                     <TextView
                         android:id="@+id/info"
@@ -175,6 +177,29 @@
                         android:paddingHorizontal="10dp"
                         android:text="Upload pictures of the current construction site to grant funds for the next stage."
                         android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/oxygen_bold"
+                        android:paddingHorizontal="10dp"
+                        android:layout_marginTop="15dp"
+                        android:text="For more details, contact the helpline no."
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/oxygen_bold"
+                        android:paddingHorizontal="10dp"
+                        android:autoLink="all"
+                        android:text="+916290438875"
+                        android:drawableStart="@drawable/ic_baseline_call_24"
+                        android:textColorLink="@color/colorAttribute"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="15sp"/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -183,6 +208,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/progressList"
                 android:layout_width="match_parent"
+                android:paddingVertical="20dp"
+                android:clipToPadding="false"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>

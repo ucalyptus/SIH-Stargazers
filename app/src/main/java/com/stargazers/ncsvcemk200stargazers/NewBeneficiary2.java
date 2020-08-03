@@ -32,6 +32,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -40,6 +41,7 @@ import com.google.firebase.storage.UploadTask;
 import com.labters.documentscanner.helpers.ScannerConstants;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
+import com.stargazers.ncsvcemk200stargazers.models.StatusModel;
 import com.stargazers.ncsvcemk200stargazers.util.NetworkClient;
 import com.stargazers.ncsvcemk200stargazers.util.UploadApis;
 
@@ -105,6 +107,7 @@ public class NewBeneficiary2 extends AppCompatActivity {
         pic = findViewById(R.id.aadhaar_image);
         proceed = findViewById(R.id.proceed);
 
+        dialog = new ProgressDialog(NewBeneficiary2.this);
 
         takePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,66 +170,66 @@ public class NewBeneficiary2 extends AppCompatActivity {
 
     /////////////////////PERMISSIONS////////////////////
 
-    private void uploadImage() {
-        File imageFile = new File(Environment.getExternalStorageDirectory() + "/Awaas/", "temp.jpg");
-
-        File compressedImageFile = null;
-        try {
-            compressedImageFile = new Compressor(NewBeneficiary2.this).compressToFile(imageFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try (InputStream inputStream = new FileInputStream(Objects.requireNonNull(compressedImageFile))){
-            try (OutputStream outputStream = new FileOutputStream(imageFile)) {
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = inputStream.read(buf)) > 0) {
-                    outputStream.write(buf, 0 ,len);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//            Save to file
-
-        File file = new File(Environment.getExternalStorageDirectory()+"/Awaas/","temp.jpg");
-        Picasso.get().load(file).memoryPolicy(MemoryPolicy.NO_CACHE)
-                .into(pic);
-
-        Retrofit retrofit = NetworkClient.getRetrofit();
-
-        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
-        MultipartBody.Part parts = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
-
-//        RequestBody someData = RequestBody.create(MediaType.parse("text/plain"), "This is a new Image");
-
-        UploadApis uploadApis = retrofit.create(UploadApis.class);
-        Call call = uploadApis.uploadImage(parts);
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                Log.d("hmm", response.toString());
-                ResponseBody jo = (ResponseBody) response.body();
-                try {
-                    JSONObject jsonObject = new JSONObject(jo.string());
-                    label = jsonObject.get("label").toString();
-//                    String label = jsonObject.get("confidence").toString();
-//                    String label = jsonObject.get("s").toString();
-
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Toast.makeText(NewBeneficiary2.this, t.getMessage(), Toast.LENGTH_LONG).show();
-
-            }
-        });
-    }
+//    private void uploadImage() {
+//        File imageFile = new File(Environment.getExternalStorageDirectory() + "/Awaas/", "temp.jpg");
+//
+//        File compressedImageFile = null;
+//        try {
+//            compressedImageFile = new Compressor(NewBeneficiary2.this).compressToFile(imageFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try (InputStream inputStream = new FileInputStream(Objects.requireNonNull(compressedImageFile))){
+//            try (OutputStream outputStream = new FileOutputStream(imageFile)) {
+//                byte[] buf = new byte[1024];
+//                int len;
+//                while ((len = inputStream.read(buf)) > 0) {
+//                    outputStream.write(buf, 0 ,len);
+//                }
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+////            Save to file
+//
+//        File file = new File(Environment.getExternalStorageDirectory()+"/Awaas/","temp.jpg");
+//        Picasso.get().load(file).memoryPolicy(MemoryPolicy.NO_CACHE)
+//                .into(pic);
+//
+//        Retrofit retrofit = NetworkClient.getRetrofit();
+//
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
+//        MultipartBody.Part parts = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+//
+////        RequestBody someData = RequestBody.create(MediaType.parse("text/plain"), "This is a new Image");
+//
+//        UploadApis uploadApis = retrofit.create(UploadApis.class);
+//        Call call = uploadApis.uploadImage(parts);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onResponse(Call call, Response response) {
+//                Log.d("hmm", response.toString());
+//                ResponseBody jo = (ResponseBody) response.body();
+//                try {
+//                    JSONObject jsonObject = new JSONObject(jo.string());
+//                    label = jsonObject.get("label").toString();
+////                    String label = jsonObject.get("confidence").toString();
+////                    String label = jsonObject.get("s").toString();
+//
+//                } catch (IOException | JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call call, Throwable t) {
+//                Toast.makeText(NewBeneficiary2.this, t.getMessage(), Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
+//    }
 
     @Override
     protected void onResume() {
@@ -270,6 +273,10 @@ public class NewBeneficiary2 extends AppCompatActivity {
             proceed.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    dialog.setTitle("Submitting your application");
+                    dialog.setMessage("Please wait...");
+                    dialog.setCancelable(false);
+                    dialog.show();
                     Toast.makeText(NewBeneficiary2.this, "Please wait", Toast.LENGTH_LONG).show();
                     databaseUpload();
                 }
@@ -287,7 +294,7 @@ public class NewBeneficiary2 extends AppCompatActivity {
 //        byte[] by = out.toByteArray();
         StorageReference reference;
 
-        Toast.makeText(NewBeneficiary2.this, ""+by.length, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(NewBeneficiary2.this, ""+by.length, Toast.LENGTH_SHORT).show();
 
         reference = FirebaseStorage.getInstance().getReference().child("Applications/").child(FirebaseAuth.getInstance().getUid() + "_doc");
         reference.putBytes(by).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -304,7 +311,20 @@ public class NewBeneficiary2 extends AppCompatActivity {
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(NewBeneficiary2.this, "Completed", Toast.LENGTH_LONG).show();
+                                        StatusModel statusModel = new StatusModel();
+                                        statusModel.setStageName("Application Submitted");
+                                        statusModel.setTimestamp(Timestamp.now());
+                                        FirebaseFirestore.getInstance().collection("Applications/"+FirebaseAuth.getInstance().getUid()+"/Statuses")
+                                                .document()
+                                                .set(statusModel)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        Toast.makeText(NewBeneficiary2.this, "Completed", Toast.LENGTH_LONG).show();
+                                                        dialog.dismiss();
+                                                        startActivity(new Intent(NewBeneficiary2.this, MainActivity.class));
+                                                    }
+                                                });
                                     }
                                 });
 

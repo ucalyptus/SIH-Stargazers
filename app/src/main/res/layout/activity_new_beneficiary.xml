@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:text="1"
+                android:text="@string/_1"
                 android:gravity="center"
                 android:textColor="@color/colorTheme"
                 android:textSize="25dp"
@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scan Aadhaar Card"
+                android:text="@string/scan_aadhaar_card"
                 android:fontFamily="@font/oxygen_ex_bold"
                 android:textColor="#212121"
                 android:paddingVertical="10dp"
@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Click on 'Scan Aadhaar' button and keep your aadhar card in front of the camera"
+            android:text="@string/click_on_scan_aadhaar_button_and_keep_your_aadhar_card_in_front_of_the_camera"
             android:paddingHorizontal="20dp"
             android:textColor="#212121"/>
 
@@ -145,7 +145,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Aadhaar QR Details"
+                        android:text="@string/aadhaar_qr_details"
                         android:fontFamily="@font/oxygen_bold"
                         android:textSize="18sp"
                         android:textColor="#212121"/>
@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:hint="Scan the QR code on your Aadhaar card"
+                        android:hint="@string/scan_the_qr_code_on_your_aadhaar_card"
                         android:minLines="6"
                         android:textColor="#212121" />
 
@@ -185,7 +185,7 @@
         android:id="@+id/proceed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="@string/next"
         android:background="@drawable/custom_button"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -197,7 +197,7 @@
         android:id="@+id/scanQR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scan Aadhaar"
+        android:text="@string/scan_aadhaar"
         android:background="@drawable/custom_button"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"

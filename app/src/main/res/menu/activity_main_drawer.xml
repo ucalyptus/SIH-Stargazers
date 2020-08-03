@@ -7,13 +7,13 @@
 
         <item
             android:id="@+id/about_us"
-            android:title="About Us"
+            android:title="@string/about_us"
             android:icon="@drawable/ic_baseline_group_24"
             />
 
         <item
             android:id="@+id/privacy"
-            android:title="Privacy"
+            android:title="@string/privacy"
             android:icon="@drawable/ic_baseline_policy_24"
             />
 
@@ -24,12 +24,12 @@
 
             <item
                 android:id="@+id/language"
-                android:title="Change language"
+                android:title="@string/change_language"
                 android:icon="@drawable/ic_twotone_translate_24" />
 
             <item
                 android:id="@+id/log_out"
-                android:title="Log Out"
+                android:title="@string/log_out"
                 android:icon="@drawable/ic_outline_exit_to_app_24" />
 
         </menu>

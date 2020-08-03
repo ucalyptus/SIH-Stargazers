@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload Picture of the House/Construction Site"
+                android:text="@string/upload_picture_of_the_house_construction_site"
                 android:fontFamily="@font/oxygen_ex_bold"
                 android:textColor="#212121"
                 android:paddingVertical="10dp"
@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="To click a picture press the 'Take picture' button"
+            android:text="@string/to_click_a_picture_press_the_take_picture_button"
             android:paddingHorizontal="20dp"
             android:textColor="#212121"/>
 
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         android:layout_below="@+id/title"
-        android:layout_alignBottom="@+id/proceed"
+        android:layout_alignBottom="@+id/take_aadhaar_image"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="60dp">
@@ -75,19 +75,20 @@
         android:id="@+id/proceed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="@string/submit"
         android:background="@drawable/custom_button"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="20dp"
         android:layout_above="@+id/take_aadhaar_image"
+        android:visibility="gone"
         android:backgroundTint="#cbcbcb"/>
 
     <Button
         android:id="@+id/take_aadhaar_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Take Picture "
+        android:text="@string/take_picture"
         android:background="@drawable/custom_button"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"

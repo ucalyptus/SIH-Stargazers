@@ -3,14 +3,9 @@
     <string name="title_activity_main2">MainActivity2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
 
     <array name="inactive">
         <item>@color/colorbase</item>
@@ -27,4 +22,49 @@
     </array>
 
     <color name="colorbase">#cbcbcb</color>
+    <string name="title_activity_admin">AdminActivity</string>
+
+    <string name="otp_verification">OTP Verification</string>
+    <string name="you_will_receive_an_one_time_password_on_this_mobile_number">You will receive an One Time Password on this mobile number</string>
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="send_otp">SEND OTP</string>
+    <string name="welcome_to_awaas_app">Welcome to Awaas App</string>
+    <string name="apply_for_your_new_home_in_just_n3_simple_steps">Apply for your new home in just \n3 SIMPLE STEPS</string>
+    <string name="made_in_india">Made in India🇮🇳</string>
+    <string name="about_us">About Us</string>
+    <string name="privacy">Privacy</string>
+    <string name="change_language">Change language</string>
+    <string name="log_out">Log Out</string>
+
+
+    <string name="get_your_own_home_nwith_a_few_clciks">Get your own home \nwith a few clciks</string>
+    <string name="get_every_information_about_your_future_home_from_the_awaas_app_nkeep_track_of_the_progress_of_your_home">Get every information about your future home from the Awaas App\nKeep track of the progress of your home</string>
+    <string name="get_your_own_home_under_the_awaas_yojana">Get your own home under the Awaas Yojana</string>
+    <string name="awaas_app_connects_you_with_the_government_n_now_you_can_avail_the_government_awaas_yojana_benefits_from_your_own_mobile_phone">Awaas App connects you with the Government.\n Now you can avail the Government Awaas Yojana Benefits from your own mobile phone.</string>
+    <string name="enter_otp">Enter OTP :</string>
+    <string name="verify">Verify</string>
+    <string name="please_don_t_press_back">Please don\'t press back</string>
+    <string name="scan_aadhaar_card">Scan Aadhaar Card</string>
+    <string name="_1">1</string>
+    <string name="click_on_scan_aadhaar_button_and_keep_your_aadhar_card_in_front_of_the_camera">Click on \'Scan Aadhaar\' button and keep your aadhar card in front of the camera</string>
+    <string name="aadhaar_qr_details">Aadhaar QR Details</string>
+    <string name="scan_the_qr_code_on_your_aadhaar_card">Scan the QR code on your Aadhaar card</string>
+    <string name="next">Next</string>
+    <string name="scan_aadhaar">Scan Aadhaar</string>
+    <string name="select_account_type">Select Account Type</string>
+    <string name="if_you_are_an_govt_official_inspector_survey_officer">If you are an Govt. Official/Inspector/Survey Officer</string>
+    <string name="govt_official">Govt. Official</string>
+    <string name="if_you_are_a_beneficiary_willing_to_apply_for_a_new_house_or_track_your_existing_application_status">If you are a beneficiary willing to apply for a new House or track your existing application status</string>
+    <string name="beneficiary">Beneficiary</string>
+    <string name="take_a_picture_of_your_aadhaar_card">Take a picture of your aadhaar card</string>
+    <string name="aadhaar_picture">Aadhaar Picture</string>
+    <string name="_2">2</string>
+    <string name="submit">SUBMIT</string>
+    <string name="take_picture_of_aadhaar">Take Picture of Aadhaar</string>
+
+    <string name="take_picture">Take Picture</string>
+    <string name="to_click_a_picture_press_the_take_picture_button">To click a picture press the \'Take picture\' button</string>
+    <string name="upload_picture_of_the_house_construction_site">Upload Picture of the House/Construction Site</string>
+
 </resources>

@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:text="2"
+                android:text="@string/_2"
                 android:gravity="center"
                 android:textColor="@color/colorTheme"
                 android:textSize="25dp"
@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aadhaar Picture"
+                android:text="@string/aadhaar_picture"
                 android:fontFamily="@font/oxygen_ex_bold"
                 android:textColor="#212121"
                 android:paddingVertical="10dp"
@@ -41,7 +41,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Take a picture of your aadhaar card"
+            android:text="@string/take_a_picture_of_your_aadhaar_card"
             android:paddingHorizontal="20dp"
             android:textColor="#212121"/>
 
@@ -71,7 +71,7 @@
         android:id="@+id/proceed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="@string/submit"
         android:background="@drawable/custom_button"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -83,7 +83,7 @@
         android:id="@+id/take_aadhaar_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Take Picture of Aadhaar"
+        android:text="@string/take_picture_of_aadhaar"
         android:background="@drawable/custom_button"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"

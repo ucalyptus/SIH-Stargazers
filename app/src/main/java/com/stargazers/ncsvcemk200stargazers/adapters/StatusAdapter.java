@@ -59,8 +59,8 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ImageViewH
         holder.count.setText(Integer.toString(position+1));
 
         holder.stageName.setText(currentItem.getStageName());
-        SimpleDateFormat sfd = new SimpleDateFormat("dd/mm/yyyy");
-        String date = sfd.format(currentItem.getTimestamp());
+        SimpleDateFormat sfd = new SimpleDateFormat("dd MMMM, yyyy");
+        String date = sfd.format(currentItem.getTimestamp().toDate());
         holder.date.setText(date);
     }
 

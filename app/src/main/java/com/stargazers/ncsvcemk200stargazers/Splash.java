@@ -67,7 +67,7 @@ public class Splash extends AppCompatActivity {
                                 introPref.setAccountType(0);
                                 new Handler().postDelayed(() -> {
                                     introPref.setAccountType(1);
-                                    Intent homeIntent = new Intent(Splash.this, MainActivity.class);
+                                    Intent homeIntent = new Intent(Splash.this, AdminPanelActivity.class);
                                     startActivity(homeIntent);
                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                     finish();

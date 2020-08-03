@@ -32,7 +32,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:paddingHorizontal="40dp"
                 android:paddingVertical="5dp"
-                android:text="Select Account Type"
+                android:text="@string/select_account_type"
                 android:textColor="@color/colorAccent"
                 android:textSize="22sp" />
 
@@ -44,7 +44,7 @@
                 android:fontFamily="@font/oxygen_bold"
                 android:paddingHorizontal="20dp"
                 android:layout_marginTop="15dp"
-                android:text="If you are an Govt. Official/Inspector/Survey Officer"
+                android:text="@string/if_you_are_an_govt_official_inspector_survey_officer"
                 android:textSize="15sp"/>
 
 
@@ -75,7 +75,7 @@
                         android:textColor="#fff"
                         android:paddingHorizontal="10dp"
                         android:fontFamily="@font/oxygen_ex_bold"
-                        android:text="Govt. Official"/>
+                        android:text="@string/govt_official"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -89,7 +89,7 @@
                 android:fontFamily="@font/oxygen_bold"
                 android:paddingHorizontal="20dp"
                 android:layout_marginTop="15dp"
-                android:text="If you are a beneficiary willing to apply for a new House or track your existing application status"
+                android:text="@string/if_you_are_a_beneficiary_willing_to_apply_for_a_new_house_or_track_your_existing_application_status"
                 android:textSize="15sp"/>
 
             <androidx.cardview.widget.CardView
@@ -121,7 +121,7 @@
                         android:textSize="20sp"
                         android:paddingHorizontal="10dp"
                         android:fontFamily="@font/oxygen_ex_bold"
-                        android:text="Beneficiary"/>
+                        android:text="@string/beneficiary"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

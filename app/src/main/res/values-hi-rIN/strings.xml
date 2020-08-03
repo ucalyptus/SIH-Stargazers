@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NC SVCE MK200 Stargazers</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="otp_verification">OTP दर्ज करें</string>
+    <string name="you_will_receive_an_one_time_password_on_this_mobile_number">इस मोबाइल नंबर पर आपको वन टाइम पासवर्ड प्राप्त होगा</string>
+
+    <string name="mobile_no">मोबाइल नंबर</string>
+
+
+    <string name="title_activity_admin">AdminActivity</string>
+    <string name="enter_mobile_number">मोबाइल नंबर दर्ज करें</string>
+    <string name="send_otp">OTP भेजें</string>
+    <string name="welcome_to_awaas_app">आवा ऐप में आपका स्वागत है</string>
+    <string name="apply_for_your_new_home_in_just_n3_simple_steps">अपने नए घर के लिए आवेदन करें सिर्फ \n3 सरल चरण में</string>
+    <string name="made_in_india">Made in India🇮🇳</string>
+    <string name="about_us">हमारे बारे में</string>
+    <string name="privacy">एकांत</string>
+    <string name="change_language">भाषा बदलो</string>
+    <string name="log_out">लॉग आउट</string>
+    <string name="get_your_own_home_nwith_a_few_clciks">Get your own home \nwith a few clicks</string>
+    <string name="get_every_information_about_your_future_home_from_the_awaas_app_nkeep_track_of_the_progress_of_your_home">Get every information about your future home from the Awaas App\nKeep track of the progress of your home</string>
+    <string name="get_your_own_home_under_the_awaas_yojana">आवा योजना के तहत अपना घर प्राप्त करें</string>
+    <string name="awaas_app_connects_you_with_the_government_n_now_you_can_avail_the_government_awaas_yojana_benefits_from_your_own_mobile_phone">Awaas App connects you with the Government.\n Now you can avail the Government Awaas Yojana Benefits from your own mobile phone.</string>
+    <string name="enter_otp">OTP दर्ज करें:</string>
+    <string name="verify">सत्यापित करें</string>
+    <string name="please_don_t_press_back">कृपया वापस प्रेस न करें</string>
+    <string name="scan_aadhaar_card">आधार को स्कैन करें</string>
+    <string name="_1">1</string>
+    <string name="click_on_scan_aadhaar_button_and_keep_your_aadhar_card_in_front_of_the_camera">Click on \'Scan Aadhaar\' button and keep your aadhar card in front of the camera</string>
+    <string name="aadhaar_qr_details">आधार क्यूआर विवरण</string>
+    <string name="scan_the_qr_code_on_your_aadhaar_card">अपने आधार कार्ड पर क्यूआर कोड स्कैन करें</string>
+    <string name="next">आगे</string>
+    <string name="scan_aadhaar">आधार को स्कैन करें</string>
+    <string name="select_account_type">खाता प्रकार चुनें</string>
+    <string name="if_you_are_an_govt_official_inspector_survey_officer">अगर आप एक सरकारी अधिकारी / निरीक्षक / सर्वेक्षण अधिकारी</string>
+    <string name="govt_official">सरकारी अधिकारी</string>
+    <string name="if_you_are_a_beneficiary_willing_to_apply_for_a_new_house_or_track_your_existing_application_status">यदि आप एक लाभार्थी हैं जो एक नए सदन के लिए आवेदन करने या अपने मौजूदा आवेदन की स्थिति को ट्रैक करने के लिए तैयार हैं</string>
+    <string name="beneficiary">लाभार्थी</string>
+    <string name="take_a_picture_of_your_aadhaar_card">आधार की तस्वीर लें</string>
+    <string name="aadhaar_picture">आधार की तस्वीर</string>
+    <string name="_2">2</string>
+    <string name="submit">प्रस्तुत</string>
+
+    <string name="take_picture_of_aadhaar">आधार की तस्वीर लें</string>
+
+    <string name="take_picture">तस्वीर लें</string>
+    <string name="to_click_a_picture_press_the_take_picture_button">To click a picture press the \'Take picture\' button</string>
+    <string name="upload_picture_of_the_house_construction_site">घर / निर्माण स्थल की तस्वीर अपलोड करें</string>
+
+</resources>

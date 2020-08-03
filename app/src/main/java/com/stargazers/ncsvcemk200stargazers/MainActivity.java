@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         applicationModel.setApplicationID(task.getResult().getId());
                         SimpleDateFormat sfd = new SimpleDateFormat("dd MMMM, yyyy");
                         String date = sfd.format(applicationModel.getTimestamp().toDate());
-                        existingDetails.setText("Application ID :\n"+applicationModel.getApplicationID()+"\n\nDate : "+date);
+                        existingDetails.setText("Name : "+applicationModel.getAadhaarModel().getName()+"\nAadhaar ID : "+applicationModel.getAadhaarModel().getUid()+"\n\nDate : "+date);
                         buildRecyclerView();
                     }
                     else {
