@@ -5,9 +5,17 @@
 
 ### Our Solution:
 
-<li><ul>We have build a light-weight Android app, called "<b>Awaas Aap</b>", with very less hardware dependency.So that even a rural person, can install the app in his phone and use it.</ul>
+<p><li><ul>We have build a light-weight Android app, called "<b>Awaas Aap</b>", with very less hardware dependency.So that even a rural person, can install the app in his phone and use it.</ul>
   <ul>Our App has a very simple UI with multi-language support for the user to use it simply.And simple UI with image explanation, helps in any user (even if he is not tech enthusiast) to use and get the benefits.</ul>
   
-  <ul>Beneficiary can himself file an application,for funding the construction from govt. without involving any middle-agent, thus reducing the delay and chances of corruption.</ul></li>
+  <ul>Beneficiary can himself file an application,for funding the construction from govt. without involving any middle-agent, thus reducing the delay and chances of corruption.</ul></li></p>
   
-  The entire workflow including the current challenges, where stargazers come into the picture, the techstack used by us, the end users, and, the work done by our AI has been explained in our PPT which can be found in the documents folder.
+  ### How to use ?
+  
+  <p><li><ul>Install the Awaas App</ul>
+  <ul>Scan your Aadhaar Card, upload the documents.If valid, user is prompted to next step.</ul>
+  
+  <ul>Upload the image of the construction, if valid user will be prompted to complete the application.</ul></li></p>
+  
+  
+  ##### The entire workflow including the current challenges, where stargazers come into the picture, the techstack used by us, the end users, and, the work done by our AI has been explained in our PPT which can be found in the documents folder.
