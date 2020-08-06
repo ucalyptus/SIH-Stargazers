@@ -1,4 +1,5 @@
 # NC_SVCE_MK200_Stargazers
+<img src="https://english.mathrubhumi.com/polopoly_fs/1.4151442.1569577251!/image/image.png_gen/derivatives/landscape_894_577/image.png" align='center'></img>
 
 # [Link to apk](https://drive.google.com/file/d/1TA1Lqj_Qt7tjjTDKFvFZswxnkaUeC5eb/view?usp=sharing)
 <p> We are working on the MK-200 of the Smart India Hackathon, which primarily focuses on the automation and validation of data reagrding the schemes of Govt.</p>
@@ -23,3 +24,7 @@
   
   
   ##### The entire workflow including the current challenges, where stargazers come into the picture, the techstack used by us, the end users, and, the work done by our AI has been explained in our PPT which can be found in the documents folder.
+
+## Source Code
+- App resides in `master` branch.
+- Backend resides in `backend` branch
