@@ -1,9 +1,9 @@
-# NC_SVCE_MK200_Stargazers
+# Team Stargazers 
+## Finalists :heart:
 <img src="https://english.mathrubhumi.com/polopoly_fs/1.4151442.1569577251!/image/image.png_gen/derivatives/landscape_894_577/image.png" align='center'></img>
 
-# [Link to apk](https://drive.google.com/file/d/1TA1Lqj_Qt7tjjTDKFvFZswxnkaUeC5eb/view?usp=sharing)
-<p> We are working on the MK-200 of the Smart India Hackathon, which primarily focuses on the automation and validation of data reagrding the schemes of Govt.</p>
-<p>We have primarily streamlined our focus, to perticular on Scheme <b>Pradhan Mantri Awaas Yojana - Gramin. </p>
+<p> We worked on the MK-200 of the Smart India Hackathon, which primarily focuses on the automation and validation of data reagrding the schemes of Govt with our major focus on <b>Pradhan Mantri Awaas Yojana - Gramin</b> </p>
+
 
 ### Our Solution:
 
@@ -28,3 +28,5 @@
 ## Source Code
 - App resides in `master` branch.
 - Backend resides in `backend` branch
+
+# [Link to apk](https://drive.google.com/file/d/1TA1Lqj_Qt7tjjTDKFvFZswxnkaUeC5eb/view?usp=sharing)
